@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchRename", "BatchRename\BatchRename.csproj", "{F63DE25C-11FB-44FA-86A0-2F7C99136178}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatchRename", "BatchRename\BatchRename.csproj", "{F63DE25C-11FB-44FA-86A0-2F7C99136178}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contract", "Contract\Contract.csproj", "{1BE1E080-9503-473E-81D2-AC2CFBA796DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeExtensionRule", "ChangeExtensionRule\ChangeExtensionRule.csproj", "{2B959D70-CC4F-484C-86EA-34B749D40DE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrimRule", "TrimRule\TrimRule.csproj", "{5B617EFD-B280-4963-AD75-461453E932C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddCounterRule", "AddCounterRule\AddCounterRule.csproj", "{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{F63DE25C-11FB-44FA-86A0-2F7C99136178}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F63DE25C-11FB-44FA-86A0-2F7C99136178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F63DE25C-11FB-44FA-86A0-2F7C99136178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BE1E080-9503-473E-81D2-AC2CFBA796DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BE1E080-9503-473E-81D2-AC2CFBA796DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BE1E080-9503-473E-81D2-AC2CFBA796DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BE1E080-9503-473E-81D2-AC2CFBA796DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B959D70-CC4F-484C-86EA-34B749D40DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B959D70-CC4F-484C-86EA-34B749D40DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B959D70-CC4F-484C-86EA-34B749D40DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B959D70-CC4F-484C-86EA-34B749D40DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B617EFD-B280-4963-AD75-461453E932C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B617EFD-B280-4963-AD75-461453E932C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B617EFD-B280-4963-AD75-461453E932C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B617EFD-B280-4963-AD75-461453E932C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

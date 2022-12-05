@@ -5,16 +5,46 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>bin\Debug\net6.0-windows\Images\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\add-white.png" />
+    <None Remove="Images\add.png" />
     <None Remove="Images\arrow-down-most.png" />
     <None Remove="Images\arrow-down.png" />
     <None Remove="Images\arrow-up-most.png" />
     <None Remove="Images\arrow-up.png" />
+    <None Remove="Images\down-arrow.png" />
+    <None Remove="Images\eye.png" />
+    <None Remove="Images\new-file.png" />
+    <None Remove="Images\new-folder.png" />
+    <None Remove="Images\output.png" />
+    <None Remove="Images\remove.png" />
+    <None Remove="Images\save.png" />
+    <None Remove="Images\start.png" />
+    <None Remove="Images\up-arrow.png" />
+    <None Remove="Rules.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net6.0-windows\Images\logo.ico" />
+    <Content Include="Rules.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AddCounterRule\AddCounterRule.csproj" />
+    <ProjectReference Include="..\ChangeExtensionRule\ChangeExtensionRule.csproj" />
+    <ProjectReference Include="..\Contract\Contract.csproj" />
+    <ProjectReference Include="..\TrimRule\TrimRule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\arrow-down-most.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -27,6 +57,21 @@
     <Resource Include="Images\arrow-up.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\down-arrow.png" />
+    <Resource Include="Images\eye.png" />
+    <Resource Include="Images\new-file.png" />
+    <Resource Include="Images\new-folder.png" />
+    <Resource Include="Images\output.png" />
+    <Resource Include="Images\remove.png" />
+    <Resource Include="Images\save.png" />
+    <Resource Include="Images\start.png" />
+    <Resource Include="Images\up-arrow.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\logo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
