@@ -7,6 +7,100 @@
         xmlns:component="clr-namespace:BatchRename.Components"
         mc:Ignorable="d"
         Title="My Rename" Height="800" Width="1200" Loaded="Window_Loaded">
+    <Window.Resources>
+        <SolidColorBrush x:Key="GotFocusColor" Color="Green" />
+        <SolidColorBrush x:Key="LostFocusColor" Color="#ef4444" />
+        <!--<Style TargetType="DataGridCell">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>-->
+        <Style TargetType="DataGridRow">
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="Height" Value="35"/>
+            <!--<Setter Property="Color" Value="#FFB3B3B3"/>-->
+            <!--<Setter Property="HorizontalContentAlignment" Value="Stretch"/>-->
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="BorderBrush" Value="#3b82f6" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF262626"/>
+                </Trigger>
+
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#2C5E1A"/>
+                </Trigger>
+
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#FF333333"/>
+                </Trigger>
+
+                <EventTrigger RoutedEvent="DataGrid.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource GotFocusColor}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="DataGrid.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource LostFocusColor}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--<Style TargetType="{x:Type DataGridRow}">
+            <Setter Property="Foreground" Value="#FFB3B3B3"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF262626"/>
+                </Trigger>
+
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#FF383838"/>
+                </Trigger>
+
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#FF333333"/>
+                </Trigger>
+
+                <EventTrigger RoutedEvent="DataGrid.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource GotFocusColor}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="DataGrid.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource LostFocusColor}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>-->
+    </Window.Resources>
     <Border Padding="16 8 16 16" Background="#e1e1e1">
         <DockPanel >
             <!--Navigation-->
@@ -45,7 +139,7 @@
                         <StackPanel>
                             <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="Button_OnClick"/>
+                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="Button_OnClick" Loaded="Button_Loaded"/>
                                 <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
                                 <component:Button Text="Up" ImageSource="/Images/up-arrow.png" BackgroundColor="#3b82f6"/>
                                 <component:Button Text="Down" ImageSource="/Images/down-arrow.png" BackgroundColor="#3b82f6"/>
@@ -53,8 +147,20 @@
                         </StackPanel>
                         <StackPanel>
                             <TextBlock Text="All rules" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
+                            <Border BorderThickness="1" BorderBrush="#FF3D3D3D" CornerRadius="5">
+                                <DataGrid Name="pickedRulesDataGrid" Style="{StaticResource datagrid}">
 
-                            <DataGrid Name="pickedRulesDataGrid" Style="{StaticResource datagrid}"></DataGrid>
+                                    <DataGrid.ColumnHeaderStyle>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGrid.ColumnHeaderStyle>
+
+
+                                </DataGrid>
+                            </Border>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -79,10 +185,21 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel>
-                                <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
-                                <DataGrid Name="pickedFilesDataGrid" Style="{StaticResource datagrid}">
 
-                                </DataGrid>
+                                <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
+                                <Border BorderThickness="1" BorderBrush="#FF3D3D3D" CornerRadius="5">
+
+                                    <DataGrid Name="pickedFilesDataGrid" Style="{StaticResource datagrid}">
+                                        <DataGrid.ColumnHeaderStyle>
+                                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                                
+                                            </Style>
+                                        </DataGrid.ColumnHeaderStyle>
+                                    </DataGrid>
+                                </Border>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -91,4 +208,5 @@
             </Border>
         </DockPanel>
     </Border>
+    
 </Window>

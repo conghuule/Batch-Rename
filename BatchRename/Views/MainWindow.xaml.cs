@@ -73,6 +73,11 @@ namespace BatchRename
             }
         }
 
+        private void Button_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         //public string First { get; set; } = "     abc txt google.txt";
         //public string Second { get; set; } = "123 giant.pdf";
