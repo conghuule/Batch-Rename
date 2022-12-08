@@ -37,6 +37,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AddCounterRule\AddCounterRule.csproj" />
     <ProjectReference Include="..\ChangeExtensionRule\ChangeExtensionRule.csproj" />
     <ProjectReference Include="..\Contract\Contract.csproj" />

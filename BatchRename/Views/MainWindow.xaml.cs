@@ -12,14 +12,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System.IO;
 using Contract;
 using System.Reflection;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
 using BatchRename.Views;
+using Microsoft.Win32;
+using System.Collections;
+using System.Xml.Linq;
+using static BatchRename.MainWindow;
+using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
+using TrimRule;
+using AddCounterRule;
+using ChangeExtensionRule;
+using System.ComponentModel;
 
 namespace BatchRename
 {
@@ -50,18 +58,21 @@ namespace BatchRename
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<PickedRule> pickedRules = new ObservableCollection<PickedRule>();
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRulesDataGrid.ItemsSource = pickedRules;
+            _pickedRules.Add(new PickedRule { Name = "Add Counter", Description = "Add counter", Rule = "AddCounter 1 2 3" });
+            _pickedRules.Add(new PickedRule { Name = "Trim", Description = "Trim", Rule = "Trim" });
+            _pickedRules.Add(new PickedRule { Name = "Change Extension", Description = "Change Extension", Rule = "ChangeExtension txt md" });
 
-            ObservableCollection<PickedFile> pickedFiles = new ObservableCollection<PickedFile>();
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFilesDataGrid.ItemsSource = pickedFiles;
-        }
+            RuleFactory.Register(new Trim());
+            RuleFactory.Register(new AddCounter());
+            RuleFactory.Register(new ChangeExtension());
+
+            RuleFactory factory = new RuleFactory();
+
+            foreach (var pickedRule in _pickedRules)
+            {
+                IRule rule = factory.Parse(pickedRule.Rule);
+                _activeRules.Add(rule);
+            }
 
       
 
@@ -69,12 +80,68 @@ namespace BatchRename
         {
             var screen = new RulesWindow();
 
-            if (screen.ShowDialog() == true)
-            {
+                        PickedFile file = new PickedFile()
+                        {
+                            Filename = filename,
+                            Extension = extension,
+                            Path= path,
+                        };
 
+                        _pickedFiles.Add(file);
+                    }
+                }
             }
         }
 
+        private void AddFolder_OnClick(object sender, RoutedEventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.Multiselect = true;
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                HandleImportFiles(dialog.FileNames.ToList());
+            }
+        }
+        private void handleFolder(string path)
+        {
+            string[] fileEntries = Directory.GetFiles(path);
+            foreach (string fileName in fileEntries)
+            {
+                if (!_fileAddedList.Contains(fileName))
+                    _fileAddedList.Add(fileName);
+            }
+            // Recurse into subdirectories of this directory.
+            string[] subdirectoryEntries = Directory.GetDirectories(path);
+            foreach (string subdirectory in subdirectoryEntries)
+                handleFolder(subdirectory);
+        }
+        private void HandleImportFiles(List<string> FileNames)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                //Save old files
+                List<string> lastFileList = new List<string>(_fileAddedList);
+                //New files
+                List<string> arrAllFiles = new List<string>(FileNames);
+
+                foreach (var file in arrAllFiles)
+                {
+                    if (!_fileAddedList.Contains(file))
+                    {
+                        if (File.Exists(file))
+                        {
+                            // This path is a file
+                            if (!_fileAddedList.Contains(file))
+                                _fileAddedList.Add(file);
+                        }
+                        else if (Directory.Exists(file))
+                        {
+                            // This path is a directory
+                            handleFolder(file);
+                        }
+                    }
+                }
 
 
 
@@ -82,55 +149,58 @@ namespace BatchRename
         //public string Second { get; set; } = "123 giant.pdf";
         //public string Third { get; set; } = "   batch UltraMegaCop.txt      ";
 
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var exeFolder = AppDomain.CurrentDomain.BaseDirectory;
-        //    var folderInfo = new DirectoryInfo(exeFolder);
-        //    var dllFiles = folderInfo.GetFiles("*.dll");
+                        PickedFile file = new PickedFile()
+                        {
+                            Filename = filename,
+                            Extension = extension,
+                            Path = path,
+                        };
 
-        //    foreach (var file in dllFiles)
-        //    {
-        //        var assembly = Assembly.LoadFrom(file.FullName);
-        //        var types = assembly.GetTypes();
+                        _pickedFiles.Add(file);
+                    }
+                }
+            });
+        }
 
-        //        foreach (var type in types)
-        //        {
-        //            if (type.IsClass && typeof(IRule).IsAssignableFrom(type))
-        //            {
-        //                IRule rule = (IRule)Activator.CreateInstance(type)!;
-        //                RuleFactory.Register(rule);
-        //            }
-        //        }
-        //    }
+        private void RemoveFiles_OnClick(object sender, RoutedEventArgs e)
+        {
+            while (pickedFilesDataGrid.SelectedItems.Count > 0)
+            {
+                int index = pickedFilesDataGrid.SelectedIndex;
+                _pickedFiles.RemoveAt(index);
+                _fileAddedList.RemoveAt(index);
+            }
+        }
 
-        //    string presetPath = "Rules.txt";
-        //    var rulesData = File.ReadAllLines(presetPath);
-        //    var rules = new List<IRule>();
+        private void renameFileList()
+        {
+            foreach (var file in _pickedFiles)
+            {
+                file.Newname = file.Filename;
+                file.NewExtension = file.Extension;
+                foreach (var rule in _activeRules)
+                {
+                    FileInfor fileInfor = rule.Rename(new FileInfor() { Filename = file.Newname, Extension = file.NewExtension });
+                    file.Newname = fileInfor.Filename;
+                    file.NewExtension = fileInfor.Extension;
+                }
+            }
+        }
 
-        //    foreach(var line in rulesData)
-        //    {
-        //        var rule = RuleFactory.Instance().Parse(line);
+        private void PreviewButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            renameFileList();
 
-        //        if(rule != null)
-        //        {
-        //            rules.Add(rule);
-        //        }
-        //    }
+        }
 
-        //    foreach (var rule in rules)
-        //    {
-        //        First = rule?.Rename(First)!;
-        //    }
-        //    foreach (var rule in rules)
-        //    {
-        //        Second = rule?.Rename(Second)!;
-        //    }
-        //    foreach (var rule in rules)
-        //    {
-        //        Third = rule?.Rename(Third)!;
-        //    }
+        private void StartButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            renameFileList();
 
-        //    this.DataContext = this;
-        //}
+            foreach (var file in _pickedFiles)
+            {
+                File.Move(file.Path, file.Path.Replace(file.Filename + file.Extension, file.Newname+file.NewExtension));
+            }
+        }
     }
 }

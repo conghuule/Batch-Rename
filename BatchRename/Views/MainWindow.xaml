@@ -18,13 +18,13 @@
                             <TextBlock Text="Save"/>
                         </StackPanel>
                     </Button>
-                    <Button BorderThickness="0" Cursor="Hand" Margin="4 0" Padding="8 0" Background="Transparent">
+                    <Button BorderThickness="0" Cursor="Hand" Margin="4 0" Padding="8 0" Background="Transparent" Click="PreviewButton_OnClick">
                         <StackPanel>
                             <Image Source="/Images/eye.png" Width="20" Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
                             <TextBlock Text="Preview"/>
                         </StackPanel>
                     </Button>
-                    <Button BorderThickness="0" Cursor="Hand" Margin="4 0" Padding="8 0" Background="Transparent">
+                    <Button BorderThickness="0" Cursor="Hand" Margin="4 0" Padding="8 0" Background="Transparent" Click="StartButton_OnClick">
                         <StackPanel>
                             <Image Source="/Images/start.png" Width="20" Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
                             <TextBlock Text="Start"/>
@@ -45,7 +45,7 @@
                         <StackPanel>
                             <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="Button_OnClick"/>
+                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
                                 <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
                                 <component:Button Text="Up" ImageSource="/Images/up-arrow.png" BackgroundColor="#3b82f6"/>
                                 <component:Button Text="Down" ImageSource="/Images/down-arrow.png" BackgroundColor="#3b82f6"/>
@@ -73,9 +73,9 @@
                             <StackPanel>
                                 <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
-                                    <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
-                                    <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
+                                    <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFiles_OnClick"/>
+                                    <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFolder_OnClick"/>
+                                    <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444" OnClick="RemoveFiles_OnClick"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel>
