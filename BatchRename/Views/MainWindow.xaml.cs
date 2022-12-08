@@ -32,9 +32,6 @@ namespace BatchRename
         {
             InitializeComponent();
         }
-<<<<<<< Updated upstream
-
-=======
         static void Swap<T>(ref T lhs, ref T rhs)
         {
             T temp;
@@ -58,7 +55,7 @@ namespace BatchRename
         }
         ObservableCollection<PickedRule> pickedRules;
         ObservableCollection<PickedFile> pickedFiles;
->>>>>>> Stashed changes
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             pickedRules = new ObservableCollection<PickedRule>();
@@ -74,24 +71,6 @@ namespace BatchRename
             pickedFilesDataGrid.ItemsSource = pickedFiles;
         }
 
-<<<<<<< Updated upstream
-        public class PickedRule
-        {
-            public string Name { get; set; } = "";
-            public string Description { get; set; } = "";
-        }
-
-
-        public class PickedFile
-        {
-            public string Filename { get; set; } = "";
-            public string Newname { get; set; } = "";
-            public string Path { get; set; } = "";
-            public string Error { get; set; } = "";
-        }
-=======
-     
->>>>>>> Stashed changes
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
