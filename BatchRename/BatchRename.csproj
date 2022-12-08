@@ -5,7 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <!--<ApplicationIcon>bin\Debug\net6.0-windows\Images\logo.ico</ApplicationIcon>-->
+    <ApplicationIcon>Images\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,9 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!--<Content Include="Images\logo.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>-->
+    <Content Include="Images\logo.ico" />
     <Content Include="Rules.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -70,6 +68,16 @@
     <Resource Include="Images\save.png" />
     <Resource Include="Images\start.png" />
     <Resource Include="Images\up-arrow.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\logo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net6.0-windows\Images\" />
   </ItemGroup>
 
 </Project>
