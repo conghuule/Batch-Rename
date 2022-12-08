@@ -1,33 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Diagnostics;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.IO;
 using Contract;
-using System.Reflection;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Metrics;
-using BatchRename.Views;
 using Microsoft.Win32;
-using System.Collections;
-using System.Xml.Linq;
-using static BatchRename.MainWindow;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 using TrimRule;
 using AddCounterRule;
 using ChangeExtensionRule;
-using System.ComponentModel;
+
 
 namespace BatchRename
 {
@@ -41,21 +23,10 @@ namespace BatchRename
             InitializeComponent();
         }
 
-        public class PickedRule
-        {
-            public string Name { get; set; } = "";
-            public string Description { get; set; } = "";
-        }
-
-
-        public class PickedFile
-        {
-            public string Filename { get; set; } = "";
-            public string Newname { get; set; } = "";
-            public string Path { get; set; } = "";
-            public string Error { get; set; } = "";
-        }
-
+        private List<string> _fileAddedList = new List<string>();
+        private ObservableCollection<PickedFile> _pickedFiles = new ObservableCollection<PickedFile>();
+        private ObservableCollection<PickedRule> _pickedRules = new ObservableCollection<PickedRule>();
+        private List<IRule> _activeRules = new List<IRule>();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _pickedRules.Add(new PickedRule { Name = "Add Counter", Description = "Add counter", Rule = "AddCounter 1 2 3" });
@@ -74,11 +45,32 @@ namespace BatchRename
                 _activeRules.Add(rule);
             }
 
-      
+            pickedRulesDataGrid.ItemsSource = _pickedRules;
+            pickedFilesDataGrid.ItemsSource = _pickedFiles;
+        }
 
-        private void Button_OnClick(object sender, RoutedEventArgs e)
+        public class PickedRule
         {
-            var screen = new RulesWindow();
+            public string Name { get; set; } = "";
+            public string Description { get; set; } = "";
+            public string Rule { get; set; } = "";
+        }
+
+        private void AddFiles_OnClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+                foreach (var path in openFileDialog.FileNames)
+                {
+                    if (!_fileAddedList.Contains(path))
+                    {
+                        _fileAddedList.Add(path);
+                        string filename = Path.GetFileNameWithoutExtension(path);
+                        string extension = Path.GetExtension(path);
 
                         PickedFile file = new PickedFile()
                         {
@@ -124,7 +116,6 @@ namespace BatchRename
                 List<string> lastFileList = new List<string>(_fileAddedList);
                 //New files
                 List<string> arrAllFiles = new List<string>(FileNames);
-
                 foreach (var file in arrAllFiles)
                 {
                     if (!_fileAddedList.Contains(file))
@@ -143,11 +134,13 @@ namespace BatchRename
                     }
                 }
 
-
-
-        //public string First { get; set; } = "     abc txt google.txt";
-        //public string Second { get; set; } = "123 giant.pdf";
-        //public string Third { get; set; } = "   batch UltraMegaCop.txt      ";
+                // To store
+                foreach (var path in _fileAddedList)
+                {
+                    if (!lastFileList.Contains(path))
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(path);
+                        string extension = Path.GetExtension(path);
 
                         PickedFile file = new PickedFile()
                         {
