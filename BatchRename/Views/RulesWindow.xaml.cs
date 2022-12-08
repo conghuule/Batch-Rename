@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,32 +20,51 @@ namespace BatchRename.Views
     /// </summary>
     public partial class RulesWindow : Window
     {
+        public BindingList<Rule> rules;
+        public Rule newRule;
         public RulesWindow()
         {
             InitializeComponent();
         }
 
-        public class Rule
+        public class Rule: INotifyPropertyChanged, ICloneable
         {
-            public string Name { get; set; }   
+            public string Name { get; set; }
+
+            public event PropertyChangedEventHandler? PropertyChanged;
+
+            public object Clone()
+            {
+                return MemberwiseClone();
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Rule> rules = new List<Rule>();
+            rules = new BindingList<Rule>();
             rules.Add(new Rule { Name = "Add counter" });
             rules.Add(new Rule { Name = "Add prefix" });
             rules.Add(new Rule { Name = "Add suffix" });
             rules.Add(new Rule { Name = "Remove all space" });
             rules.Add(new Rule { Name = "All character to lowercase" });
-
             rulesListView.ItemsSource = rules;
         }
 
         private void addRuleButton_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            int id = -1;
+            id = rulesListView.SelectedIndex;
+            if(id != -1) {
+                newRule = new Rule();
+                newRule.Name = rules[id].Name;
+                DialogResult = true; 
+            }
         }
 
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            this.Close();
+        }
     }
 }

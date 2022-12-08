@@ -32,22 +32,16 @@ namespace BatchRename
         {
             InitializeComponent();
         }
+<<<<<<< Updated upstream
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+=======
+        static void Swap<T>(ref T lhs, ref T rhs)
         {
-            ObservableCollection<PickedRule> pickedRules = new ObservableCollection<PickedRule>();
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRulesDataGrid.ItemsSource = pickedRules;
-
-            ObservableCollection<PickedFile> pickedFiles = new ObservableCollection<PickedFile>();
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFilesDataGrid.ItemsSource = pickedFiles;
+            T temp;
+            temp = lhs;
+            lhs = rhs;
+            rhs = temp;
         }
-
         public class PickedRule
         {
             public string Name { get; set; } = "";
@@ -62,14 +56,100 @@ namespace BatchRename
             public string Path { get; set; } = "";
             public string Error { get; set; } = "";
         }
+        ObservableCollection<PickedRule> pickedRules;
+        ObservableCollection<PickedFile> pickedFiles;
+>>>>>>> Stashed changes
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            pickedRules = new ObservableCollection<PickedRule>();
+            pickedRules.Add(new PickedRule { Name = "Add counter1", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Name = "Add counter2", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Name = "Add counter3", Description = "Add counter" });
+            pickedRulesDataGrid.ItemsSource = pickedRules;
 
-        private void Button_OnClick(object sender, RoutedEventArgs e)
+            pickedFiles = new ObservableCollection<PickedFile>();
+            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
+            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
+            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
+            pickedFilesDataGrid.ItemsSource = pickedFiles;
+        }
+
+<<<<<<< Updated upstream
+        public class PickedRule
+        {
+            public string Name { get; set; } = "";
+            public string Description { get; set; } = "";
+        }
+
+
+        public class PickedFile
+        {
+            public string Filename { get; set; } = "";
+            public string Newname { get; set; } = "";
+            public string Path { get; set; } = "";
+            public string Error { get; set; } = "";
+        }
+=======
+     
+>>>>>>> Stashed changes
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var screen = new RulesWindow();
 
             if (screen.ShowDialog() == true)
             {
+                RulesWindow.Rule data = (RulesWindow.Rule)screen.newRule.Clone();
+                PickedRule insertRule = new PickedRule();
+                insertRule.Name = data.Name;
+                pickedRules.Add(insertRule);
+            }
+            else
+            {
 
+            }
+        }
+
+        private void pickedRulesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void RemoveButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                pickedRules.RemoveAt(id);
+            }
+        }
+
+        private void UpButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                if(id != 0)
+                {
+                    pickedRules.Move(id, id - 1);
+                }
+                
+            }
+        }
+
+        private void DownButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                if(id!= pickedRules.Count - 1)
+                {
+                    pickedRules.Move(id, id + 1);
+                }
+                
             }
         }
 
