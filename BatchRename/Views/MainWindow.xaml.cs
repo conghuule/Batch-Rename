@@ -33,21 +33,6 @@ namespace BatchRename
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            ObservableCollection<PickedRule> pickedRules = new ObservableCollection<PickedRule>();
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
-            pickedRulesDataGrid.ItemsSource = pickedRules;
-
-            ObservableCollection<PickedFile> pickedFiles = new ObservableCollection<PickedFile>();
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFilesDataGrid.ItemsSource = pickedFiles;
-        }
-
         public class PickedRule
         {
             public string Name { get; set; } = "";
@@ -63,6 +48,23 @@ namespace BatchRename
             public string Error { get; set; } = "";
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<PickedRule> pickedRules = new ObservableCollection<PickedRule>();
+            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Name = "Add counter", Description = "Add counter" });
+            pickedRulesDataGrid.ItemsSource = pickedRules;
+
+            ObservableCollection<PickedFile> pickedFiles = new ObservableCollection<PickedFile>();
+            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
+            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
+            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
+            pickedFilesDataGrid.ItemsSource = pickedFiles;
+        }
+
+      
+
         private void Button_OnClick(object sender, RoutedEventArgs e)
         {
             var screen = new RulesWindow();
@@ -72,6 +74,8 @@ namespace BatchRename
 
             }
         }
+
+
 
 
         //public string First { get; set; } = "     abc txt google.txt";
