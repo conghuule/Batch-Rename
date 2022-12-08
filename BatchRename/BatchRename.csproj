@@ -17,6 +17,8 @@
     <None Remove="Images\arrow-up.png" />
     <None Remove="Images\down-arrow.png" />
     <None Remove="Images\eye.png" />
+    <!--<None Remove="Images\logo.ico" />-->
+	  
     <None Remove="Images\new-file.png" />
     <None Remove="Images\new-folder.png" />
     <None Remove="Images\output.png" />
