@@ -1,6 +1,6 @@
 ﻿namespace RuleFactory
 {
-    public class Class1
+    public class RuleFactory
     {
 
     }
