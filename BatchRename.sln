@@ -5,13 +5,23 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatchRename", "BatchRename\BatchRename.csproj", "{F63DE25C-11FB-44FA-86A0-2F7C99136178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contract", "Contract\Contract.csproj", "{1BE1E080-9503-473E-81D2-AC2CFBA796DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contract", "Contract\Contract.csproj", "{1BE1E080-9503-473E-81D2-AC2CFBA796DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeExtensionRule", "ChangeExtensionRule\ChangeExtensionRule.csproj", "{2B959D70-CC4F-484C-86EA-34B749D40DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeExtensionRule", "ChangeExtensionRule\ChangeExtensionRule.csproj", "{2B959D70-CC4F-484C-86EA-34B749D40DE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrimRule", "TrimRule\TrimRule.csproj", "{5B617EFD-B280-4963-AD75-461453E932C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrimRule", "TrimRule\TrimRule.csproj", "{5B617EFD-B280-4963-AD75-461453E932C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddCounterRule", "AddCounterRule\AddCounterRule.csproj", "{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddCounterRule", "AddCounterRule\AddCounterRule.csproj", "{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddPrefixRule", "AddPrefixRule\AddPrefixRule.csproj", "{E264B3EA-8EBA-47F2-957B-712EE1CD6C26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddSufixRule", "AddSufixRule\AddSufixRule.csproj", "{4A749F56-0B49-4390-9680-BF2207A9E381}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LowerCaseNoSpaceRule", "LowerCaseNoSpaceRule\LowerCaseNoSpaceRule.csproj", "{8C77BD91-AA93-4A05-AF12-711F96125A31}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PascalCaseRule", "PascalCaseRule\PascalCaseRule.csproj", "{2CC7C698-BF4A-4093-9B39-250D969AD1F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReplaceCharacter", "ReplaceCharacter\ReplaceCharacter.csproj", "{39EB50F4-088C-4A88-91F4-D3E15AB1A875}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +49,26 @@ Global
 		{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0B1FDAD-F7DF-471A-BAB3-C99D8C63A79B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E264B3EA-8EBA-47F2-957B-712EE1CD6C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E264B3EA-8EBA-47F2-957B-712EE1CD6C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E264B3EA-8EBA-47F2-957B-712EE1CD6C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E264B3EA-8EBA-47F2-957B-712EE1CD6C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A749F56-0B49-4390-9680-BF2207A9E381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A749F56-0B49-4390-9680-BF2207A9E381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A749F56-0B49-4390-9680-BF2207A9E381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A749F56-0B49-4390-9680-BF2207A9E381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C77BD91-AA93-4A05-AF12-711F96125A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C77BD91-AA93-4A05-AF12-711F96125A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C77BD91-AA93-4A05-AF12-711F96125A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C77BD91-AA93-4A05-AF12-711F96125A31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CC7C698-BF4A-4093-9B39-250D969AD1F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CC7C698-BF4A-4093-9B39-250D969AD1F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC7C698-BF4A-4093-9B39-250D969AD1F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CC7C698-BF4A-4093-9B39-250D969AD1F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39EB50F4-088C-4A88-91F4-D3E15AB1A875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39EB50F4-088C-4A88-91F4-D3E15AB1A875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39EB50F4-088C-4A88-91F4-D3E15AB1A875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39EB50F4-088C-4A88-91F4-D3E15AB1A875}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

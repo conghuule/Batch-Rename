@@ -41,6 +41,7 @@ namespace BatchRename
         }
         public class PickedRule
         {
+            public string Number { get; set; } = "";
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
         }
@@ -52,25 +53,80 @@ namespace BatchRename
             public string Newname { get; set; } = "";
             public string Path { get; set; } = "";
             public string Error { get; set; } = "";
+            public string Number { get; set; } = "";
         }
         ObservableCollection<PickedRule> pickedRules;
         ObservableCollection<PickedFile> pickedFiles;
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             pickedRules = new ObservableCollection<PickedRule>();
-            pickedRules.Add(new PickedRule { Name = "Add counter1", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter2", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Name = "Add counter3", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "1", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "2", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
+            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
             pickedRulesDataGrid.ItemsSource = pickedRules;
 
             pickedFiles = new ObservableCollection<PickedFile>();
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFiles.Add(new PickedFile { Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads" });
-            pickedFilesDataGrid.ItemsSource = pickedFiles;
-        }
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
+            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
 
+            pickedFilesDataGrid.ItemsSource = pickedFiles;
+
+
+
+        }
+       
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
@@ -131,6 +187,8 @@ namespace BatchRename
                 
             }
         }
+
+
 
 
         //public string First { get; set; } = "     abc txt google.txt";
