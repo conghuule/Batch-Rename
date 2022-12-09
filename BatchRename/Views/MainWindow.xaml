@@ -5,9 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BatchRename"
         xmlns:component="clr-namespace:BatchRename.Components"
+
         mc:Ignorable="d"
-        Title="My Rename" Height="800" Width="1200" Loaded="Window_Loaded">
-    <Border Padding="16 8 16 16" Background="#e1e1e1">
+        Title="My Rename" Height="800" Width="1200" Loaded="Window_Loaded"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    <Window.Resources>
+
+
+        <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Cursor" Value="SizeWE"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Padding="16 8 16 16" Background="#ffffff">
         <DockPanel >
             <!--Navigation-->
             <Border DockPanel.Dock="Top" HorizontalAlignment="Center">
@@ -40,23 +58,61 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Rules" FontSize="28" FontWeight="Bold" Margin="0 0 0 16" Grid.ColumnSpan="2"/>
-                <Border Grid.Row="1" Padding="20" Background="White" CornerRadius="8" Grid.ColumnSpan="2">
-                    <StackPanel>
+                <Border Grid.Row="1" Padding="20" Background="#EFF2F7" CornerRadius="8" Grid.ColumnSpan="2">
+                   
+                    <Grid Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
                         <StackPanel>
                             <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="Button_OnClick"/>
+                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="Button_OnClick" Loaded="Button_Loaded"/>
                                 <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
                                 <component:Button Text="Up" ImageSource="/Images/up-arrow.png" BackgroundColor="#3b82f6"/>
                                 <component:Button Text="Down" ImageSource="/Images/down-arrow.png" BackgroundColor="#3b82f6"/>
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel>
-                            <TextBlock Text="All rules" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
+                            <StackPanel>
+                                <TextBlock Text="All rules" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
+                            </StackPanel>
 
-                            <DataGrid Name="pickedRulesDataGrid" Style="{StaticResource datagrid}"></DataGrid>
                         </StackPanel>
-                    </StackPanel>
+
+
+                   
+
+
+                        <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="pickedRulesDataGrid" Style="{DynamicResource DataGridStyle1}" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                                <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                                </Border>
+
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
+                             
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+
+
+                    </Grid>
                 </Border>
             </Grid>
 
@@ -68,27 +124,68 @@
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Files" FontSize="28" FontWeight="Bold" Margin="0 0 0 16"/>
-                    <Border Grid.Row="1" Padding="20" Background="White" CornerRadius="8">
-                        <StackPanel>
-                            <StackPanel>
-                                <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
-                                    <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
-                                    <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
+                    <Border Grid.Row="1" Padding="20" Background="#EFF2F7" CornerRadius="8">
+                       
+                            <Grid Grid.Column="1" >
+                               
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
+                                        <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
+                                        <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
+                                    </StackPanel>
+                                <StackPanel>
+
+                                    <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
+
+
+
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel>
-                                <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
-                                <DataGrid Name="pickedFilesDataGrid" Style="{StaticResource datagrid}">
 
+
+
+
+
+                            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Name="pickedFilesDataGrid" Style="{DynamicResource DataGridStyle1}" Grid.ColumnSpan="3" Grid.RowSpan="6" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                                    <DataGridTemplateColumn Header="Filename" IsReadOnly="True" Width="*">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                       
+                                                    <TextBlock Text="{Binding Filename}" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Newname" Binding="{Binding Newname}" IsReadOnly="True" Width="*"/>
+                                    <DataGridTextColumn Header="Path" Binding="{Binding Path}" IsReadOnly="True" Width="*"/>
+                                    <DataGridTextColumn Header="Error" Binding="{Binding Error}" IsReadOnly="True" Width="*"/>
+                                    </DataGrid.Columns>
                                 </DataGrid>
-                            </StackPanel>
-                        </StackPanel>
+
+
+
+                            </Grid>
+                      
                     </Border>
 
                 </Grid>
             </Border>
         </DockPanel>
     </Border>
+
 </Window>
