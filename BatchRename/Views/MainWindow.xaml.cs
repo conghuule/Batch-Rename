@@ -34,21 +34,6 @@ namespace BatchRename
             
         }
 
-        public class PickedRule
-        {
-            public string Name { get; set; } = "";
-            public string Description { get; set; } = "";
-        }
-
-
-        public class PickedFile
-        {
-            public string Filename { get; set; } = "";
-            public string Newname { get; set; } = "";
-            public string Path { get; set; } = "";
-            public string Error { get; set; } = "";
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ObservableCollection<PickedRule> pickedRules = new ObservableCollection<PickedRule>();
