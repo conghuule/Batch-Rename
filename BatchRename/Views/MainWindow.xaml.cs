@@ -33,10 +33,34 @@ namespace BatchRename
             InitializeComponent();
             
         }
+        static void Swap<T>(ref T lhs, ref T rhs)
+        {
+            T temp;
+            temp = lhs;
+            lhs = rhs;
+            rhs = temp;
+        }
+        public class PickedRule
+        {
+            public string Number { get; set; } = "";
+            public string Name { get; set; } = "";
+            public string Description { get; set; } = "";
+        }
 
+
+        public class PickedFile
+        {
+            public string Filename { get; set; } = "";
+            public string Newname { get; set; } = "";
+            public string Path { get; set; } = "";
+            public string Error { get; set; } = "";
+            public string Number { get; set; } = "";
+        }
+        ObservableCollection<PickedRule> pickedRules;
+        ObservableCollection<PickedFile> pickedFiles;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<PickedRule> pickedRules = new ObservableCollection<PickedRule>();
+            pickedRules = new ObservableCollection<PickedRule>();
             pickedRules.Add(new PickedRule { Number = "1", Name = "Add counter", Description = "Add counter" });
             pickedRules.Add(new PickedRule { Number = "2", Name = "Add counter", Description = "Add counter" });
             pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
@@ -67,7 +91,7 @@ namespace BatchRename
             pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
             pickedRulesDataGrid.ItemsSource = pickedRules;
 
-            ObservableCollection<PickedFile> pickedFiles = new ObservableCollection<PickedFile>();
+            pickedFiles = new ObservableCollection<PickedFile>();
             pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
             pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
             pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
@@ -97,43 +121,30 @@ namespace BatchRename
             pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
             pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
             pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            
+
             pickedFilesDataGrid.ItemsSource = pickedFiles;
 
-          
+
 
         }
+       
 
-        public class PickedRule
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            public string Number { get; set; } = "";
-            public string Name { get; set; } = "";
-            public string Description { get; set; } = "";
+
         }
-
-
-        public class PickedFile
-        {
-            public string Filename { get; set; } = "";
-            public string Newname { get; set; } = "";
-            public string Path { get; set; } = "";
-            public string Error { get; set; } = "";
-            public string Number { get; set; } = "";
-        }
-
-        private void Button_OnClick(object sender, RoutedEventArgs e)
-        {
-            var screen = new RulesWindow();
 
             if (screen.ShowDialog() == true)
             {
+                RulesWindow.Rule data = (RulesWindow.Rule)screen.newRule.Clone();
+                PickedRule insertRule = new PickedRule();
+                insertRule.Name = data.Name;
+                pickedRules.Add(insertRule);
+            }
+            else
+            {
 
             }
-        }
-
-        private void Button_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void pickedRulesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -141,14 +152,42 @@ namespace BatchRename
 
         }
 
-        private void pickedRulesDataGrid_SelectionChanged_1()
+        private void RemoveButton_Clicked(object sender, RoutedEventArgs e)
         {
-
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                pickedRules.RemoveAt(id);
+            }
         }
 
-        private void pickedRulesDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void UpButton_Clicked(object sender, RoutedEventArgs e)
         {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                if(id != 0)
+                {
+                    pickedRules.Move(id, id - 1);
+                }
+                
+            }
+        }
 
+        private void DownButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                if(id!= pickedRules.Count - 1)
+                {
+                    pickedRules.Move(id, id + 1);
+                }
+                
+            }
         }
 
         
