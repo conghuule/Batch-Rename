@@ -84,9 +84,19 @@
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
                     Padding="20"
-                    Background="White"
+                    Background="#EFF2F7"
                     CornerRadius="8">
-                    <StackPanel>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
                         <StackPanel>
                             <TextBlock
                                 Margin="0,0,0,12"
@@ -116,48 +126,62 @@
                                     OnClick="DownButton_Clicked"
                                     Text="Down" />
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel>
-                            <TextBlock
-                                Margin="0,12"
-                                FontSize="16"
-                                FontWeight="Bold"
-                                Foreground="#4b5563"
-                                Text="All rules" />
-
-                            <DataGrid
-                                Name="pickedRulesDataGrid"
-                                SelectionChanged="pickedRulesDataGrid_SelectionChanged"
-                                Style="{StaticResource datagrid}" />
+                            <StackPanel>
+                                <TextBlock
+                                    Margin="0,12"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Foreground="#4b5563"
+                                    Text="All rules" />
+                            </StackPanel>
                         </StackPanel>
 
-
-                   
-
-
-                        <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="pickedRulesDataGrid" Style="{DynamicResource DataGridStyle1}" >
+                        <DataGrid
+                            x:Name="pickedRulesDataGrid"
+                            CellStyle="{DynamicResource DataGridCellStyle1}"
+                            ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                            RowStyle="{DynamicResource DataGridRowStyle1}"
+                            Style="{DynamicResource DataGridStyle1}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-                                <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
+                                <DataGridTextColumn
+                                    Width="auto"
+                                    Binding="{Binding Number}"
+                                    CanUserResize="False"
+                                    Header="#"
+                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn
+                                    Width="*"
+                                    Header="Name"
+                                    IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                                <Border
+                                                    Width="25"
+                                                    Height="25"
+                                                    Margin="0,0,10,0"
+                                                    Background="{Binding BgColor}"
+                                                    CornerRadius="50">
+                                                    <TextBlock
+                                                        Margin="0,0,0,1"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="White"
+                                                        Text="{Binding Character}" />
                                                 </Border>
 
-                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
-                             
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Description}"
+                                    Header="Description"
+                                    IsReadOnly="True" />
                             </DataGrid.Columns>
                         </DataGrid>
-
-
-
                     </Grid>
                 </Border>
             </Grid>
@@ -178,9 +202,19 @@
                     <Border
                         Grid.Row="1"
                         Padding="20"
-                        Background="White"
+                        Background="#EFF2F7"
                         CornerRadius="8">
-                        <StackPanel>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
                             <StackPanel>
                                 <TextBlock
                                     Margin="0,0,0,12"
@@ -202,49 +236,65 @@
                                         ImageSource="/Images/remove.png"
                                         Text="Remove" />
                                 </StackPanel>
+                                <StackPanel>
+                                    <TextBlock
+                                        Margin="0,12"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="#4b5563"
+                                        Text="All files" />
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel>
-                                <TextBlock
-                                    Margin="0,12"
-                                    FontSize="16"
-                                    FontWeight="Bold"
-                                    Foreground="#4b5563"
-                                    Text="All files" />
-                                <DataGrid Name="pickedFilesDataGrid" Style="{StaticResource datagrid}" />
-                            </StackPanel>
 
+                            <DataGrid
+                                Name="pickedFilesDataGrid"
+                                Grid.RowSpan="6"
+                                Grid.ColumnSpan="3"
+                                CellStyle="{DynamicResource DataGridCellStyle1}"
+                                ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                RowStyle="{DynamicResource DataGridRowStyle1}"
+                                Style="{DynamicResource DataGridStyle1}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="auto"
+                                        Binding="{Binding Number}"
+                                        CanUserResize="False"
+                                        Header="#"
+                                        IsReadOnly="True" />
+                                    <DataGridTemplateColumn
+                                        Width="*"
+                                        Header="Filename"
+                                        IsReadOnly="True">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
 
-
-
-
-                            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Name="pickedFilesDataGrid" Style="{DynamicResource DataGridStyle1}" Grid.ColumnSpan="3" Grid.RowSpan="6" >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-                                    <DataGridTemplateColumn Header="Filename" IsReadOnly="True" Width="*">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal">
-                                                       
-                                                    <TextBlock Text="{Binding Filename}" VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Newname" Binding="{Binding Newname}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Path" Binding="{Binding Path}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Error" Binding="{Binding Error}" IsReadOnly="True" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-
-
-
-                            </Grid>
-                      
+                                                    <TextBlock VerticalAlignment="Center" Text="{Binding Filename}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Newname}"
+                                        Header="Newname"
+                                        IsReadOnly="True" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Path}"
+                                        Header="Path"
+                                        IsReadOnly="True" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Error}"
+                                        Header="Error"
+                                        IsReadOnly="True" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                     </Border>
-
                 </Grid>
             </Border>
         </DockPanel>
     </Border>
-
 </Window>

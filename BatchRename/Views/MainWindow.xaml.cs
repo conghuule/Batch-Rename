@@ -131,8 +131,7 @@ namespace BatchRename
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+            var screen = new RulesWindow();
 
             if (screen.ShowDialog() == true)
             {
@@ -145,11 +144,6 @@ namespace BatchRename
             {
 
             }
-        }
-
-        private void pickedRulesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void RemoveButton_Clicked(object sender, RoutedEventArgs e)
@@ -190,7 +184,7 @@ namespace BatchRename
             }
         }
 
-        
+
 
 
         //public string First { get; set; } = "     abc txt google.txt";
@@ -247,6 +241,6 @@ namespace BatchRename
 
         //    this.DataContext = this;
         //}
-    
+
     }
 }
