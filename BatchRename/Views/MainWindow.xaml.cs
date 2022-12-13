@@ -195,5 +195,66 @@ namespace BatchRename
                 File.Move(file.Path, file.Path.Replace(file.Filename + file.Extension, file.Newname+file.NewExtension));
             }
         }
+
+        private void Handle_DropFile(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                List<string> lastFileList = new List<string>(_fileAddedList);
+
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (var file in files)
+                {
+                    if (!_fileAddedList.Contains(file))
+                    {
+                        if (File.Exists(file))
+                        {
+                            // This path is a file
+                            if (!_fileAddedList.Contains(file))
+                                _fileAddedList.Add(file);
+                        }
+                        else if (Directory.Exists(file))
+                        {
+                            // This path is a directory
+                            handleFolder(file);
+                        }
+                    }
+                }
+
+                foreach (var path in _fileAddedList)
+                {
+                    if (!lastFileList.Contains(path))
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(path);
+                        string extension = Path.GetExtension(path);
+
+                        PickedFile file = new PickedFile()
+                        {
+                            Filename = filename,
+                            Extension = extension,
+                            Path = path,
+                        };
+
+                        _pickedFiles.Add(file);
+                    }
+                }
+            }
+
+            filesPanel.Visibility = Visibility.Visible;
+            dragdropPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void Handle_DragEnter(object sender, DragEventArgs e)
+        {
+            filesPanel.Visibility = Visibility.Collapsed;
+            dragdropPanel.Visibility = Visibility.Visible;
+        }
+
+        private void Handle_DragLeave(object sender, DragEventArgs e)
+        {
+            filesPanel.Visibility = Visibility.Visible;
+            dragdropPanel.Visibility = Visibility.Hidden;
+        }
     }
 }

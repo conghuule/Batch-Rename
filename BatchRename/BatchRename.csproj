@@ -16,6 +16,7 @@
     <None Remove="Images\arrow-up-most.png" />
     <None Remove="Images\arrow-up.png" />
     <None Remove="Images\down-arrow.png" />
+    <None Remove="Images\dropfile.jpg" />
     <None Remove="Images\eye.png" />
     <!--<None Remove="Images\logo.ico" />-->
 	  
@@ -65,6 +66,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\down-arrow.png" />
+    <Resource Include="Images\dropfile.jpg" />
     <Resource Include="Images\eye.png" />
     <Resource Include="Images\new-file.png" />
     <Resource Include="Images\new-folder.png" />

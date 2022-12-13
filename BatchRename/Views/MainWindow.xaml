@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BatchRename"
         xmlns:component="clr-namespace:BatchRename.Components"
         mc:Ignorable="d"
-        Title="My Rename" Height="800" Width="1200" Loaded="Window_Loaded">
+        Title="My Rename" Height="600" Width="1200" Loaded="Window_Loaded">
     <Border Padding="16 8 16 16" Background="#e1e1e1">
         <DockPanel >
             <!--Navigation-->
@@ -68,23 +68,32 @@
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Files" FontSize="28" FontWeight="Bold" Margin="0 0 0 16"/>
-                    <Border Grid.Row="1" Padding="20" Background="White" CornerRadius="8">
+                    <Border Grid.Row="1" Padding="20" Background="White" CornerRadius="8" AllowDrop="True" DragEnter="Handle_DragEnter" DragLeave="Handle_DragLeave" Drop="Handle_DropFile">
                         <StackPanel>
-                            <StackPanel>
-                                <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFiles_OnClick"/>
-                                    <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFolder_OnClick"/>
-                                    <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444" OnClick="RemoveFiles_OnClick"/>
+                            <StackPanel Name="filesPanel">
+                                <StackPanel>
+                                    <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFiles_OnClick"/>
+                                        <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFolder_OnClick"/>
+                                        <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444" OnClick="RemoveFiles_OnClick"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
+                                    <DataGrid Name="pickedFilesDataGrid" Style="{StaticResource datagrid}">
+                                    </DataGrid>
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel>
-                                <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
-                                <DataGrid Name="pickedFilesDataGrid" Style="{StaticResource datagrid}">
-
-                                </DataGrid>
-                            </StackPanel>
+                            <Grid Height="300" Margin="0 50 0 0" Name="dragdropPanel" Visibility="Hidden">
+                                <Rectangle Name="DragDropPanel"  RadiusX="12" RadiusY="12" Stroke="Black" StrokeDashArray="6,6">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="/Images/dropfile.jpg" Stretch="UniformToFill"></ImageBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Grid>
                         </StackPanel>
+
                     </Border>
 
                 </Grid>
