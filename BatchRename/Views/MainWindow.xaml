@@ -160,6 +160,7 @@
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFiles_OnClick"/>
                                                 <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFolder_OnClick"/>
+                                                <component:Button Text="Output folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="OutputFolder_OnClick"/>
                                                 <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444" OnClick="RemoveFiles_OnClick"/>
                                             </StackPanel>
                                         </StackPanel>

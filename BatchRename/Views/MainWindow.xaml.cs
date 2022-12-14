@@ -11,6 +11,8 @@ using AddCounterRule;
 using ChangeExtensionRule;
 using static BatchRename.MainWindow;
 using BatchRename.Views;
+using System;
+using System.Diagnostics;
 
 namespace BatchRename
 {
@@ -150,7 +152,7 @@ namespace BatchRename
                             Extension = extension,
                             Path = path,
                         };
-
+                        Console.WriteLine(file);
                         _pickedFiles.Add(file);
                     }
                 }
@@ -320,6 +322,30 @@ namespace BatchRename
                     _pickedRules.Move(id, id + 1);
                 }
 
+            }
+        }
+
+        private void OutputFolder_OnClick(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sf = new SaveFileDialog();
+            sf.AddExtension = true;
+            sf.RestoreDirectory = true;
+            foreach (var item in _pickedFiles)
+            {
+
+
+
+                // Feed the dummy name to the save dialog
+
+                //sf.FileName = item.Filename;
+                //if (sf.ShowDialog() == true)
+                //{
+                //    // Now here's our save folder
+                //    string savePath = Path.GetDirectoryName(sf.FileName);
+                //    Console.WriteLine(savePath);
+                //    sf = null;
+                //}
+                Console.WriteLine(item);
             }
         }
     }
