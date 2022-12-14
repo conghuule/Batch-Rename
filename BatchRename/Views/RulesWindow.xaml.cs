@@ -43,6 +43,22 @@ namespace BatchRename.Views
 
     }
 
+    public partial class ChangeExtensionWindow
+    {
+        public string nameChangeExtension { get; set; }
+        public string ChangeExtension { get; set; }
+
+    }
+
+    public partial class ReplaceWindow
+    {
+        public string nameReplace { get; set; }
+        public string OldChar { get; set; }
+        public string NewChar { get; set; }
+
+
+    }
+
     public partial class RulesWindow : Window
     {
         public RulesWindow()
@@ -79,6 +95,10 @@ namespace BatchRename.Views
                 AddPreFixWindow(sender, e);
             else if (AddSufix.IsSelected)
                 AddSuFixWindow(sender, e);
+            else if (ChangeExtension.IsSelected)
+                ChangeExtensionWindow(sender, e);
+            else if (Replace.IsSelected)
+                ReplaceWindow(sender, e);
         }
 
         private void AddCounterWindow(object sender, RoutedEventArgs e)
@@ -98,12 +118,26 @@ namespace BatchRename.Views
             component.Add(new AddPreFixWindow { namePreFix = "Add prefix"});
             PreFixList.ItemsSource = component;
         }
+
         private void AddSuFixWindow(object sender, RoutedEventArgs e)
         {
             List<AddSuFixWindow> component = new List<AddSuFixWindow>();
             component.Add(new AddSuFixWindow { nameSuFix = "Add sufix", SuFix = "" });
             SuFixList.ItemsSource = component;
         }
-        
+
+        private void ChangeExtensionWindow(object sender, RoutedEventArgs e)
+        {
+            List<ChangeExtensionWindow> component = new List<ChangeExtensionWindow>();
+            component.Add(new ChangeExtensionWindow { nameChangeExtension = "Change Extension", ChangeExtension = "" });
+            ChangeExtensionList.ItemsSource = component;
+        }
+
+        private void ReplaceWindow(object sender, RoutedEventArgs e)
+        {
+        List<ReplaceWindow> component = new List<ReplaceWindow>();
+            component.Add(new ReplaceWindow { nameReplace = "Replace Character (seperate by '/')", OldChar = "-/_", NewChar = "" });
+            ReplaceList.ItemsSource = component;
+        }
     }
 }

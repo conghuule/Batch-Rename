@@ -8,6 +8,41 @@
         WindowStartupLocation="CenterScreen"
         Title="Pick Rule" Height="450" Width="800" Loaded="Window_Loaded">
 
+    <Window.Resources>
+        <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                                <TabPanel
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    Background="Transparent"
+                                    IsItemsHost="True" />
+                            </ScrollViewer>
+
+                            <Border Grid.Column="1">
+                                <StackPanel>
+                                    <ContentPresenter
+                                    Margin="0,0,0,0"
+                                    ContentSource="SelectedContent"
+                                    SnapsToDevicePixels="True" />
+                            </StackPanel>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Border Padding="12" Background="#e1e1e1">
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 16 0 0">
@@ -15,30 +50,30 @@
                 <Button Content="Cancel"  Background="#a3a3a3" IsCancel="True" MinWidth="120" Style="{StaticResource button}" Foreground="#000"/>
             </StackPanel>
 
-
+            
             <Grid>
                 <Border CornerRadius="6" Background="#fff">
-                    <TabControl x:Name="MyTab" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
+                    <TabControl x:Name="MyTab" TabStripPlacement="Left" Style="{DynamicResource TabControlStyle}" SelectionChanged="TabControl_SelectionChanged">
                         <TabControl.Resources>
                             <Style TargetType="TabItem">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="TabItem">
-                                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                            <Border Name="Border" BorderThickness="1,1,1,1" BorderBrush="White" CornerRadius="4,4,0,0" Margin="2,0">
                                                 <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="10,10"/>
+                                                                        VerticalAlignment="Center"
+                                                                        HorizontalAlignment="Center"
+                                                                        ContentSource="Header"
+                                                                        Margin="10,10"/>
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                                    <Setter TargetName="Border" Property="Background" Value="#3b82f6" />
                                                     <Setter Property="Foreground" Value="White"/>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="False">
-                                                    <Setter TargetName="Border" Property="Background" Value="#3b82f6"/>
-                                                    <Setter Property="Foreground" Value="White"/>
+                                                    <Setter TargetName="Border" Property="Background" Value="#d3d3d3"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
@@ -47,64 +82,186 @@
                             </Style>
                         </TabControl.Resources>
                         
-                        <TabItem x:Name="AddCounter" Width="200" Header="Add counter" Background="#3b82f6" FontSize="16" Margin="4,0,0,0">
+                        <TabItem x:Name="AddCounter" Width="200" Header="Add counter" Background="#3b82f6" FontSize="16" Margin="1 1 0 0">
                             <ListView Name="CounterList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="100,0,0,0">
+                                        <Grid Margin="10,0,0,0">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="150"></ColumnDefinition>
-                                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                                <ColumnDefinition Width="90"></ColumnDefinition>
+                                                <ColumnDefinition Width="450"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <Label Content="{Binding nameCounter}" Grid.Column="0" Margin="35,35,0,0" FontSize="15" Foreground="black"/>
-                                            <TextBox  Height="25" Width="150" Grid.Column="1" Margin="0,38,0,0" TextWrapping="Wrap" FontSize="15"></TextBox>
+                                            <Label Content="{Binding nameCounter}" 
+                                                   Grid.Column="0" 
+                                                   Margin="0,30,0,0" 
+                                                   FontSize="16" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#4b5563"/>
+                                            <TextBox  Height="35" 
+                                                      Width="400"
+                                                      Grid.Column="1"
+                                                      Margin="0,25,0,0"
+                                                      TextWrapping="Wrap" 
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      Foreground="black"
+                                                      Padding="5 5 5 5"
+                                                      ></TextBox>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </TabItem>
 
-                        <TabItem x:Name="AddPrefix" Width="200" Header="Add prefix" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
+                        <TabItem x:Name="AddPrefix" Width="200" Header="Add prefix" Background="#3b82f6" FontSize="16" Margin="1 1 0 0">
                             <ListView Name="PreFixList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="100,0,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="150"></ColumnDefinition>
-                                                <ColumnDefinition Width="150"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Label Content="{Binding namePreFix}" Grid.Column="0" Margin="35,35,0,0" FontSize="15" Foreground="black"/>
-                                            <TextBox Height="25" Width="150" Grid.Column="1" Margin="0,38,0,0" TextWrapping="Wrap" FontSize="15"></TextBox>
+                                        <Grid Margin="10,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding namePreFix}"
+                                                   Grid.Row="0" 
+                                                   Margin="0,30,0,0" 
+                                                   FontSize="16" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#4b5563"/>
+                                            <TextBox  Height="35"
+                                                      Width="500"
+                                                      Grid.Row="1"
+                                                      Margin="0,25,0,0"
+                                                      TextWrapping="Wrap" 
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      Foreground="black"
+                                                      Padding="5 5 5 5"></TextBox>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </TabItem>
 
-
-                        <TabItem x:Name="AddSufix" Width="200" Header="Add sufix" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
+                        <TabItem x:Name="AddSufix" Width="200" Header="Add sufix" Background="#3b82f6" FontSize="16" Margin="1 1 0 0">
                             <ListView Name="SuFixList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="100,0,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="150"></ColumnDefinition>
-                                                <ColumnDefinition Width="150"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Label Content="{Binding nameSuFix}" Grid.Column="0" Margin="35,35,0,0" FontSize="15" Foreground="black"/>
-                                            <TextBox Height="25" Width="150" Grid.Column="1" Margin="0,38,0,0" TextWrapping="Wrap" FontSize="15"></TextBox>
+                                        <Grid Margin="10,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding nameSuFix}"
+                                                   Grid.Row="0" 
+                                                   Margin="0,30,0,0" 
+                                                   FontSize="16" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#4b5563"/>
+                                            <TextBox  Height="35"
+                                                      MinWidth="500"
+                                                      Grid.Row="1"
+                                                      Margin="0,25,0,0"
+                                                      TextWrapping="Wrap" 
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      Foreground="black"
+                                                      Padding="5 5 5 5"></TextBox>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </TabItem>
 
-                        <TabItem x:Name="RemoveAllSpace" Width="200" Header="Remove all space" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
-                            <Label Margin="35,35,0,0" FontSize="15" Foreground="black">Remove all space in file:</Label>
+                        <TabItem x:Name="ChangeExtension" Width="200" Header="Change Extension" Background="#3b82f6" FontSize="16" Margin="1 1 0 0">
+                            <ListView Name="ChangeExtensionList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="10,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding nameChangeExtension}"
+                                                   Grid.Row="0" 
+                                                   Margin="0,30,0,0" 
+                                                   FontSize="16" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#4b5563"/>
+                                            <TextBox  Height="35"
+                                                      MinWidth="500"
+                                                      Grid.Row="1"
+                                                      Margin="0,25,0,0"
+                                                      TextWrapping="Wrap" 
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      Foreground="black"
+                                                      Padding="5 5 5 5"></TextBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </TabItem>
 
-                        <TabItem x:Name="AllLowercase" Width="200" Header="All character to lowercase" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
-                            <Label Margin="35,35,0,0" FontSize="15" Foreground="black">All character to lowercase in file:</Label>
+                        <TabItem x:Name="Replace" Width="200" Header="Replace Character" Background="#3b82f6" FontSize="16" Margin="1 1 0 0">
+                            <ListView Name="ReplaceList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="10,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                                <RowDefinition Height="1*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding nameReplace}"
+                                                   Grid.Row="0" 
+                                                   Margin="0,30,0,0" 
+                                                   FontSize="16" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#4b5563"/>
+                                            <TextBox Text="{Binding OldChar}"  
+                                                      Height="35"
+                                                      MinWidth="500"
+                                                      Grid.Row="1"
+                                                      Margin="0,25,0,0"
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      Foreground="black"
+                                                      Padding="5 5 5 5"/>
+                                            <TextBox  Text="{Binding NewChar}"
+                                                      Height="35"
+                                                      MinWidth="500"
+                                                      Grid.Row="2"
+                                                      Margin="0,25,0,0"
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      Foreground="black"
+                                                      Padding="5 5 5 5"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </TabItem>
+
+                        <TabItem x:Name="ToPascalCase" Width="200" Header="To PascalCase" Background="#3b82f6" FontSize="16" Margin="1 1 0 0">
+                            <Label Margin="35,35,0,0" 
+                                   FontSize="16" 
+                                   FontWeight="Bold" 
+                                   Foreground="#4b5563">Rule to pascal case in file name</Label>
+                        </TabItem>
+
+                        <TabItem x:Name="RemoveAllSpace" Width="200" Header="Remove all space" Background="#3b82f6" FontSize="16" Margin="1 1 0 0">
+                            <Label Margin="35,35,0,0" 
+                                   FontSize="16" 
+                                   FontWeight="Bold" 
+                                   Foreground="#4b5563">Remove all space in file name</Label>
+                        </TabItem>
+
+                        <TabItem x:Name="AllLowercase" Width="200" Header="All character to lowercase" Background="#3b82f6" FontSize="16" Margin="1 1 0 1">
+                            <Label Margin="35,35,0,0" 
+                                   FontSize="16" 
+                                   FontWeight="Bold" 
+                                   Foreground="#4b5563">All character to lowercase in file name</Label>
                         </TabItem>
                     </TabControl>
                 </Border>
