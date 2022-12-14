@@ -27,11 +27,11 @@ namespace AddCounterRule
             return result;
         }
 
-        public string Rename(string origin)
+        public FileInfor Rename(FileInfor origin)
         {
-            string result = $"{origin} {CurrentValue.ToString("D3")}";
+            origin.Filename = $"{origin.Filename} {CurrentValue.ToString("D3")}";
             CurrentValue += Step;
-            return result;
+            return origin;
         }
     }
 }

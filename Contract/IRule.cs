@@ -2,7 +2,7 @@
 {
     public interface IRule
     {
-        string Rename(string origin);
+        FileInfor Rename(FileInfor origin);
         IRule? Parse(string data);
         string Name { get; }
     }

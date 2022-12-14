@@ -11,10 +11,10 @@ namespace TrimRule
             return new Trim();
         }
 
-        public string Rename(string origin)
+        public FileInfor Rename(FileInfor origin)
         {
-            string result = origin.Trim();
-            return result;
+            origin.Filename = origin.Filename.Trim();
+            return origin;
         }
     }
 }

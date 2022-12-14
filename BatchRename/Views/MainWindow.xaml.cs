@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Diagnostics;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System.IO;
 using Contract;
-using System.Reflection;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Metrics;
+using Microsoft.Win32;
+using TrimRule;
+using AddCounterRule;
+using ChangeExtensionRule;
+using static BatchRename.MainWindow;
 using BatchRename.Views;
 
 namespace BatchRename
@@ -34,180 +25,303 @@ namespace BatchRename
             
         }
 
+        private List<string> _fileAddedList = new List<string>();
+        private ObservableCollection<PickedFile> _pickedFiles = new ObservableCollection<PickedFile>();
+        private ObservableCollection<PickedRule> _pickedRules = new ObservableCollection<PickedRule>();
+        private List<IRule> _activeRules = new List<IRule>();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<PickedRule> pickedRules = new ObservableCollection<PickedRule>();
-            pickedRules.Add(new PickedRule { Number = "1", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "2", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRules.Add(new PickedRule { Number = "3", Name = "Add counter", Description = "Add counter" });
-            pickedRulesDataGrid.ItemsSource = pickedRules;
+            _pickedRules.Add(new PickedRule { Name = "Add Counter", Description = "Add counter", Rule = "AddCounter 1 2 3" });
+            _pickedRules.Add(new PickedRule { Name = "Trim", Description = "Trim", Rule = "Trim" });
+            _pickedRules.Add(new PickedRule { Name = "Change Extension", Description = "Change Extension", Rule = "ChangeExtension txt md" });
 
-            ObservableCollection<PickedFile> pickedFiles = new ObservableCollection<PickedFile>();
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            pickedFiles.Add(new PickedFile { Number = "1", Filename = "abc.txt", Newname = "123.txt", Path = "C:\\downloads", Error = "No error" });
-            
-            pickedFilesDataGrid.ItemsSource = pickedFiles;
+            RuleFactory.Register(new Trim());
+            RuleFactory.Register(new AddCounter());
+            RuleFactory.Register(new ChangeExtension());
 
-          
+            RuleFactory factory = new RuleFactory();
 
+            foreach (var pickedRule in _pickedRules)
+            {
+                IRule rule = factory.Parse(pickedRule.Rule);
+                _activeRules.Add(rule);
+            }
+
+            pickedRulesDataGrid.ItemsSource = _pickedRules;
+            pickedFilesDataGrid.ItemsSource = _pickedFiles;
         }
 
         public class PickedRule
         {
-            public string Number { get; set; } = "";
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
+            public string Rule { get; set; } = "";
         }
 
-
-        public class PickedFile
+        private void AddFiles_OnClick(object sender, RoutedEventArgs e)
         {
-            public string Filename { get; set; } = "";
-            public string Newname { get; set; } = "";
-            public string Path { get; set; } = "";
-            public string Error { get; set; } = "";
-            public string Number { get; set; } = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+
+                foreach (var path in openFileDialog.FileNames)
+                {
+                    if (!_fileAddedList.Contains(path))
+                    {
+                        _fileAddedList.Add(path);
+                        string filename = Path.GetFileNameWithoutExtension(path);
+                        string extension = Path.GetExtension(path);
+
+                        PickedFile file = new PickedFile()
+                        {
+                            Filename = filename,
+                            Extension = extension,
+                            Path= path,
+                        };
+
+                        _pickedFiles.Add(file);
+                    }
+                }
+            }
+        }
+
+        private void AddFolder_OnClick(object sender, RoutedEventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.Multiselect = true;
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                HandleImportFiles(dialog.FileNames.ToList());
+            }
+        }
+        private void handleFolder(string path)
+        {
+            string[] fileEntries = Directory.GetFiles(path);
+            foreach (string fileName in fileEntries)
+            {
+                if (!_fileAddedList.Contains(fileName))
+                    _fileAddedList.Add(fileName);
+            }
+            // Recurse into subdirectories of this directory.
+            string[] subdirectoryEntries = Directory.GetDirectories(path);
+            foreach (string subdirectory in subdirectoryEntries)
+                handleFolder(subdirectory);
+        }
+        private void HandleImportFiles(List<string> FileNames)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                //Save old files
+                List<string> lastFileList = new List<string>(_fileAddedList);
+                //New files
+                List<string> arrAllFiles = new List<string>(FileNames);
+                foreach (var file in arrAllFiles)
+                {
+                    if (!_fileAddedList.Contains(file))
+                    {
+                        if (File.Exists(file))
+                        {
+                            // This path is a file
+                            if (!_fileAddedList.Contains(file))
+                                _fileAddedList.Add(file);
+                        }
+                        else if (Directory.Exists(file))
+                        {
+                            // This path is a directory
+                            handleFolder(file);
+                        }
+                    }
+                }
+
+                // To store
+                foreach (var path in _fileAddedList)
+                {
+                    if (!lastFileList.Contains(path))
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(path);
+                        string extension = Path.GetExtension(path);
+
+                        PickedFile file = new PickedFile()
+                        {
+                            Filename = filename,
+                            Extension = extension,
+                            Path = path,
+                        };
+
+                        _pickedFiles.Add(file);
+                    }
+                }
+            });
+        }
+
+        private void RemoveFiles_OnClick(object sender, RoutedEventArgs e)
+        {
+            while (pickedFilesDataGrid.SelectedItems.Count > 0)
+            {
+                int index = pickedFilesDataGrid.SelectedIndex;
+                _pickedFiles.RemoveAt(index);
+                _fileAddedList.RemoveAt(index);
+            }
+        }
+
+        private void renameFileList()
+        {
+            foreach (var file in _pickedFiles)
+            {
+                file.Newname = file.Filename;
+                file.NewExtension = file.Extension;
+                foreach (var rule in _activeRules)
+                {
+                    FileInfor fileInfor = rule.Rename(new FileInfor() { Filename = file.Newname, Extension = file.NewExtension });
+                    file.Newname = fileInfor.Filename;
+                    file.NewExtension = fileInfor.Extension;
+                }
+            }
+        }
+
+        private void PreviewButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            renameFileList();
+
+        }
+
+        private void StartButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            renameFileList();
+
+            foreach (var file in _pickedFiles)
+            {
+                File.Move(file.Path, file.Path.Replace(file.Filename + file.Extension, file.Newname+file.NewExtension));
+            }
         }
 
         private void Button_OnClick(object sender, RoutedEventArgs e)
         {
-            var screen = new RulesWindow();
 
-            if (screen.ShowDialog() == true)
-            {
-
-            }
         }
 
         private void Button_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void pickedRulesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Handle_DropFile(object sender, DragEventArgs e)
         {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                List<string> lastFileList = new List<string>(_fileAddedList);
 
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (var file in files)
+                {
+                    if (!_fileAddedList.Contains(file))
+                    {
+                        if (File.Exists(file))
+                        {
+                            // This path is a file
+                            if (!_fileAddedList.Contains(file))
+                                _fileAddedList.Add(file);
+                        }
+                        else if (Directory.Exists(file))
+                        {
+                            // This path is a directory
+                            handleFolder(file);
+                        }
+                    }
+                }
+
+                foreach (var path in _fileAddedList)
+                {
+                    if (!lastFileList.Contains(path))
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(path);
+                        string extension = Path.GetExtension(path);
+
+                        PickedFile file = new PickedFile()
+                        {
+                            Filename = filename,
+                            Extension = extension,
+                            Path = path,
+                        };
+
+                        _pickedFiles.Add(file);
+                    }
+                }
+            }
+
+            filesPanel.Visibility = Visibility.Visible;
+            dragdropPanel.Visibility = Visibility.Hidden;
         }
 
-        private void pickedRulesDataGrid_SelectionChanged_1()
+        private void Handle_DragEnter(object sender, DragEventArgs e)
         {
-
+            filesPanel.Visibility = Visibility.Collapsed;
+            dragdropPanel.Visibility = Visibility.Visible;
         }
 
-        private void pickedRulesDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void Handle_DragLeave(object sender, DragEventArgs e)
         {
-
+            filesPanel.Visibility = Visibility.Visible;
+            dragdropPanel.Visibility = Visibility.Hidden;
         }
 
-        
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new RulesWindow();
 
+            if (screen.ShowDialog() == true)
+            {
+                RulesWindow.Rule data = (RulesWindow.Rule)screen.newRule.Clone();
+                PickedRule insertRule = new PickedRule();
+                insertRule.Name = data.Name;
+                _pickedRules.Add(insertRule);
+            }
+            else
+            {
 
-        //public string First { get; set; } = "     abc txt google.txt";
-        //public string Second { get; set; } = "123 giant.pdf";
-        //public string Third { get; set; } = "   batch UltraMegaCop.txt      ";
+            }
+        }
 
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var exeFolder = AppDomain.CurrentDomain.BaseDirectory;
-        //    var folderInfo = new DirectoryInfo(exeFolder);
-        //    var dllFiles = folderInfo.GetFiles("*.dll");
+        private void RemoveButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                _pickedRules.RemoveAt(id);
+            }
+        }
 
-        //    foreach (var file in dllFiles)
-        //    {
-        //        var assembly = Assembly.LoadFrom(file.FullName);
-        //        var types = assembly.GetTypes();
+        private void UpButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                if (id != 0)
+                {
+                    _pickedRules.Move(id, id - 1);
+                }
 
-        //        foreach (var type in types)
-        //        {
-        //            if (type.IsClass && typeof(IRule).IsAssignableFrom(type))
-        //            {
-        //                IRule rule = (IRule)Activator.CreateInstance(type)!;
-        //                RuleFactory.Register(rule);
-        //            }
-        //        }
-        //    }
+            }
+        }
 
-        //    string presetPath = "Rules.txt";
-        //    var rulesData = File.ReadAllLines(presetPath);
-        //    var rules = new List<IRule>();
+        private void DownButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var selectedItems = pickedRulesDataGrid.SelectedItems;
+            if (selectedItems != null)
+            {
+                int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
+                if (id != _pickedRules.Count - 1)
+                {
+                    _pickedRules.Move(id, id + 1);
+                }
 
-        //    foreach(var line in rulesData)
-        //    {
-        //        var rule = RuleFactory.Instance().Parse(line);
-
-        //        if(rule != null)
-        //        {
-        //            rules.Add(rule);
-        //        }
-        //    }
-
-        //    foreach (var rule in rules)
-        //    {
-        //        First = rule?.Rename(First)!;
-        //    }
-        //    foreach (var rule in rules)
-        //    {
-        //        Second = rule?.Rename(Second)!;
-        //    }
-        //    foreach (var rule in rules)
-        //    {
-        //        Third = rule?.Rename(Third)!;
-        //    }
-
-        //    this.DataContext = this;
-        //}
-    
+            }
+        }
     }
+    
 }

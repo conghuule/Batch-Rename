@@ -28,10 +28,16 @@ namespace ChangeExtensionRule
             return result;
         }
 
-        public string Rename(string origin)
+        public FileInfor Rename(FileInfor origin)
         {
-            string result = origin.Replace("." + OldExtension, "." +  NewExtension);
-            return result;
+            //string result = origin.Replace("." + OldExtension, "." + NewExtension);
+            //return result;
+            if (origin.Extension == "." + OldExtension)
+            {
+                origin.Extension = "." + NewExtension;
+            }
+
+            return origin;
         }
     }
 }

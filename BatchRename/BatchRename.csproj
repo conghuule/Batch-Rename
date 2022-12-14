@@ -26,6 +26,7 @@
     <None Remove="Images\save.png" />
     <None Remove="Images\start.png" />
     <None Remove="Images\up-arrow.png" />
+    <None Remove="Images\dropfile.jpg" />
     <None Remove="Rules.txt" />
   </ItemGroup>
 
@@ -34,6 +35,11 @@
     <Content Include="Rules.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +67,7 @@
     </Resource>
     <Resource Include="Images\down-arrow.png" />
     <Resource Include="Images\eye.png" />
+	<Resource Include="Images\dropfile.jpg" />
     <Resource Include="Images\new-file.png" />
     <Resource Include="Images\new-folder.png" />
     <Resource Include="Images\output.png" />

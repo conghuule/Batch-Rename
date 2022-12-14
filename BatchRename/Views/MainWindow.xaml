@@ -74,31 +74,28 @@
                         <StackPanel>
                             <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="Button_OnClick" Loaded="Button_Loaded"/>
-                                <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
-                                <component:Button Text="Up" ImageSource="/Images/up-arrow.png" BackgroundColor="#3b82f6"/>
-                                <component:Button Text="Down" ImageSource="/Images/down-arrow.png" BackgroundColor="#3b82f6"/>
+                                <component:Button Text="Add" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddButton_Click"/>
+                                <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444" OnClick="RemoveButton_Clicked"/>
+                                <component:Button Text="Up" ImageSource="/Images/up-arrow.png" BackgroundColor="#3b82f6" OnClick="UpButton_Clicked"/>
+                                <component:Button Text="Down" ImageSource="/Images/down-arrow.png" BackgroundColor="#3b82f6" OnClick="DownButton_Clicked"/>
                             </StackPanel>
                             <StackPanel>
                                 <TextBlock Text="All rules" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
                             </StackPanel>
-
+                            
                         </StackPanel>
 
-
+                        
                    
 
 
                         <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="pickedRulesDataGrid" Style="{DynamicResource DataGridStyle1}" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
                                 <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                                </Border>
+                                                
 
                                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                                             </StackPanel>
@@ -106,6 +103,7 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
+                                <DataGridTextColumn Header="Rule" Binding="{Binding Rule}" IsReadOnly="True" Width="*"/>
                              
                             </DataGrid.Columns>
                         </DataGrid>
@@ -138,48 +136,71 @@
                                     <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel>
+                                <!--<StackPanel>
                                     <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
-                                        <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6"/>
-                                        <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444"/>
+                                    <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFiles_OnClick"/>
+                                    <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFolder_OnClick"/>
+                                    <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444" OnClick="RemoveFiles_OnClick"/>
                                     </StackPanel>
                                 <StackPanel>
 
                                     <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
-
+                                       
 
 
                                 </StackPanel>
-                            </StackPanel>
+                            </StackPanel>-->
 
+                            <Border Grid.Row="1" Padding="20" Background="White" CornerRadius="8" AllowDrop="True" DragEnter="Handle_DragEnter" DragLeave="Handle_DragLeave" Drop="Handle_DropFile">
+                                <StackPanel>
+                                    <StackPanel Name="filesPanel">
+                                        <StackPanel>
+                                            <TextBlock Text="Actions" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 0 0 12" />
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <component:Button Text="Add files" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFiles_OnClick"/>
+                                                <component:Button Text="Add folder" ImageSource="/Images/add.png" BackgroundColor="#3b82f6" OnClick="AddFolder_OnClick"/>
+                                                <component:Button Text="Remove" ImageSource="/Images/remove.png" BackgroundColor="#ef4444" OnClick="RemoveFiles_OnClick"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel>
+                                            <TextBlock Text="All files" FontSize="16" FontWeight="Bold" Foreground="#4b5563" Margin="0 12" />
+                                            
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Grid Height="100" Margin="0 50 0 0" Name="dragdropPanel" Visibility="Hidden" Background="White">
+                                        <Rectangle Name="DragDropPanel"  RadiusX="12" RadiusY="12" Stroke="Black" StrokeDashArray="6,6">
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="/Images/dropfile.jpg" Stretch="UniformToFill"></ImageBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Grid>
+                                    
+                                </StackPanel>
 
+                            </Border>
 
-
-
-                            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Name="pickedFilesDataGrid" Style="{DynamicResource DataGridStyle1}" Grid.ColumnSpan="3" Grid.RowSpan="6" >
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                            <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Name="pickedFilesDataGrid" Style="{DynamicResource DataGridStyle1}" Grid.ColumnSpan="3" Grid.RowSpan="6" >
+                                <DataGrid.Columns>
                                     <DataGridTemplateColumn Header="Filename" IsReadOnly="True" Width="*">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal">
-                                                       
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+
                                                     <TextBlock Text="{Binding Filename}" VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Newname" Binding="{Binding Newname}" IsReadOnly="True" Width="*"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                     <DataGridTextColumn Header="Path" Binding="{Binding Path}" IsReadOnly="True" Width="*"/>
-                                    <DataGridTextColumn Header="Error" Binding="{Binding Error}" IsReadOnly="True" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                </DataGrid.Columns>
+                            </DataGrid>
 
 
 
-                            </Grid>
+
+
+                        </Grid>
                       
                     </Border>
 
