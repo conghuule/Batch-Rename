@@ -79,4 +79,8 @@
     <Folder Include="bin\Debug\net6.0-windows\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="20.3.0.61" />
+  </ItemGroup>
+
 </Project>

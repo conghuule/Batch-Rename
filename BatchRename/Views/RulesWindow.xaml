@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BatchRename.Views"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Pick Rule" Height="450" Width="800" Loaded="Window_Loaded">
+
     <Border Padding="12" Background="#e1e1e1">
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 16 0 0">
@@ -13,30 +15,100 @@
                 <Button Content="Cancel"  Background="#a3a3a3" IsCancel="True" MinWidth="120" Style="{StaticResource button}" Foreground="#000"/>
             </StackPanel>
 
-            <Border CornerRadius="6" Background="#fff">
-                <StackPanel DockPanel.Dock="Left" Width="200">
-                    <Border Padding="8">
-                        <ListView Name="rulesListView" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel />
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Content="{Binding Name}" Width="180" Background="#3b82f6" Style="{StaticResource button}"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Border>
-                </StackPanel>
-            </Border>
 
-            <Border CornerRadius="6" Background="#fff" Margin="8 0 0 0">
-                <StackPanel>
-                    <TextBlock Text="Configuration"/>
-                </StackPanel>
-            </Border>
+            <Grid>
+                <Border CornerRadius="6" Background="#fff">
+                    <TabControl x:Name="MyTab" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
+                        <TabControl.Resources>
+                            <Style TargetType="TabItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                                <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,10"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter TargetName="Border" Property="Background" Value="#3b82f6"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Resources>
+                        
+                        <TabItem x:Name="AddCounter" Width="200" Header="Add counter" Background="#3b82f6" FontSize="16" Margin="4,0,0,0">
+                            <ListView Name="CounterList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="100,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{Binding nameCounter}" Grid.Column="0" Margin="35,35,0,0" FontSize="15" Foreground="black"/>
+                                            <TextBox  Height="25" Width="150" Grid.Column="1" Margin="0,38,0,0" TextWrapping="Wrap" FontSize="15"></TextBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </TabItem>
+
+                        <TabItem x:Name="AddPrefix" Width="200" Header="Add prefix" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
+                            <ListView Name="PreFixList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="100,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{Binding namePreFix}" Grid.Column="0" Margin="35,35,0,0" FontSize="15" Foreground="black"/>
+                                            <TextBox Height="25" Width="150" Grid.Column="1" Margin="0,38,0,0" TextWrapping="Wrap" FontSize="15"></TextBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </TabItem>
+
+
+                        <TabItem x:Name="AddSufix" Width="200" Header="Add sufix" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
+                            <ListView Name="SuFixList" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="100,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="{Binding nameSuFix}" Grid.Column="0" Margin="35,35,0,0" FontSize="15" Foreground="black"/>
+                                            <TextBox Height="25" Width="150" Grid.Column="1" Margin="0,38,0,0" TextWrapping="Wrap" FontSize="15"></TextBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </TabItem>
+
+                        <TabItem x:Name="RemoveAllSpace" Width="200" Header="Remove all space" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
+                            <Label Margin="35,35,0,0" FontSize="15" Foreground="black">Remove all space in file:</Label>
+                        </TabItem>
+
+                        <TabItem x:Name="AllLowercase" Width="200" Header="All character to lowercase" Background="#3b82f6" FontSize="16" Margin="4 0 0 0">
+                            <Label Margin="35,35,0,0" FontSize="15" Foreground="black">All character to lowercase in file:</Label>
+                        </TabItem>
+                    </TabControl>
+                </Border>
+            </Grid>
         </DockPanel>
     </Border>
 </Window>
