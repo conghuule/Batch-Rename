@@ -39,22 +39,25 @@
                         Padding="8,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Cursor="Hand">
+                        Cursor="Hand"
+                        Click="Preview_Click">
                         <StackPanel>
                             <Image
                                 Width="20"
                                 Height="20"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="/Images/eye.png" />
+                                Source="/Images/eye.png" 
+                                />
                             <TextBlock Text="Preview" />
                         </StackPanel>
-                    </Button>
+                    </Button> 
                     <Button
                         Margin="4,0"
                         Padding="8,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Cursor="Hand">
+                        Cursor="Hand"
+                        Click="Start_Click">
                         <StackPanel>
                             <Image
                                 Width="20"
@@ -203,8 +206,13 @@
                         Grid.Row="1"
                         Padding="20"
                         Background="#EFF2F7"
-                        CornerRadius="8">
-                        <Grid Grid.Column="1">
+                        CornerRadius="8"  
+                        AllowDrop="True" 
+                        DragEnter="Handle_DragEnter" 
+                        DragLeave="Handle_DragLeave" 
+                        Drop="Handle_DropFile">
+                        <StackPanel>
+                        <Grid Grid.Column="1" Name="filesPanel">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
@@ -226,15 +234,18 @@
                                     <component:Button
                                         BackgroundColor="#3b82f6"
                                         ImageSource="/Images/add.png"
-                                        Text="Add files" />
+                                        Text="Add files" 
+                                        OnClick="AddFiles_Click"/>
                                     <component:Button
                                         BackgroundColor="#3b82f6"
                                         ImageSource="/Images/add.png"
-                                        Text="Add folder" />
+                                        Text="Add folder" 
+                                        OnClick="AddFolder_Click"/>
                                     <component:Button
                                         BackgroundColor="#ef4444"
                                         ImageSource="/Images/remove.png"
-                                        Text="Remove" />
+                                        Text="Remove" 
+                                        OnClick="RemoveFiles_Click"/>
                                 </StackPanel>
                                 <StackPanel>
                                     <TextBlock
@@ -291,7 +302,16 @@
                                         IsReadOnly="True" />
                                 </DataGrid.Columns>
                             </DataGrid>
+                            
                         </Grid>
+                            <Grid Height="300" Margin="0 50 0 0" Name="dragdropPanel" Visibility="Hidden">
+                                <Rectangle Name="DragDropPanel"  RadiusX="12" RadiusY="12" Stroke="Black" StrokeDashArray="6,6">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="/Images/dropfile.jpg" Stretch="UniformToFill"></ImageBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Grid>
+                        </StackPanel>
                     </Border>
                 </Grid>
             </Border>
