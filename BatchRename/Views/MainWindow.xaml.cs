@@ -13,6 +13,8 @@ using static BatchRename.MainWindow;
 using BatchRename.Views;
 using System;
 using System.Diagnostics;
+using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace BatchRename
 {
@@ -327,8 +329,13 @@ namespace BatchRename
 
         private void OutputFolder_OnClick(object sender, RoutedEventArgs e)
         {
+            if(_pickedFiles.Count == 0)
+            {
+                return;
+            }
             SaveFileDialog sf = new SaveFileDialog();
             sf.AddExtension = true;
+            sf.Filter = "All files (*.*)|*.*";
             sf.RestoreDirectory = true;
             foreach (var item in _pickedFiles)
             {
@@ -337,16 +344,22 @@ namespace BatchRename
 
                 // Feed the dummy name to the save dialog
 
-                //sf.FileName = item.Filename;
-                //if (sf.ShowDialog() == true)
-                //{
-                //    // Now here's our save folder
-                //    string savePath = Path.GetDirectoryName(sf.FileName);
-                //    Console.WriteLine(savePath);
-                //    sf = null;
-                //}
-                Console.WriteLine(item);
+                sf.FileName = item.Filename;
+                if (sf.ShowDialog() == true)
+                {
+                    // Now here's our save folder
+                    string savePath = Path.GetDirectoryName(sf.FileName);
+                    var fileName = $"{item.Filename}.{item.Extension}";
+                    var destination = Path.Combine(savePath, fileName);
+
+                    File.Copy(item.Path, destination);
+                }
+
             }
+
+           
+
+
         }
     }
     
