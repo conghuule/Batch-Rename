@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ChangeExtensionRule/1.0.0": {
+        "dependencies": {
+          "Contract": "1.0.0"
+        },
+        "runtime": {
+          "ChangeExtensionRule.dll": {}
+        }
+      },
+      "Contract/1.0.0": {
+        "runtime": {
+          "Contract.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ChangeExtensionRule/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Contract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

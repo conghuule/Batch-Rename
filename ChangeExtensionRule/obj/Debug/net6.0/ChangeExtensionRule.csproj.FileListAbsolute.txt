@@ -1,0 +1,15 @@
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\bin\Debug\net6.0\ChangeExtensionRule.deps.json
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\bin\Debug\net6.0\ChangeExtensionRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\bin\Debug\net6.0\ChangeExtensionRule.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\bin\Debug\net6.0\Contract.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\bin\Debug\net6.0\Contract.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.csproj.AssemblyReference.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.AssemblyInfoInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.AssemblyInfo.cs
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.csproj.CoreCompileInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.csproj.CopyComplete
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\refint\ChangeExtensionRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ChangeExtensionRule.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\ChangeExtensionRule\obj\Debug\net6.0\ref\ChangeExtensionRule.dll

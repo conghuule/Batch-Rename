@@ -1,0 +1,12 @@
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\bin\Debug\net6.0\Contract.deps.json
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\bin\Debug\net6.0\Contract.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\bin\Debug\net6.0\Contract.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\Contract.csproj.AssemblyReference.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\Contract.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\Contract.AssemblyInfoInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\Contract.AssemblyInfo.cs
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\Contract.csproj.CoreCompileInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\Contract.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\refint\Contract.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\Contract.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\Contract\obj\Debug\net6.0\ref\Contract.dll

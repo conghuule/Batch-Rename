@@ -1,0 +1,15 @@
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\bin\Debug\net6.0\TrimRule.deps.json
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\bin\Debug\net6.0\TrimRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\bin\Debug\net6.0\TrimRule.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\bin\Debug\net6.0\Contract.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\bin\Debug\net6.0\Contract.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.csproj.AssemblyReference.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.AssemblyInfoInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.AssemblyInfo.cs
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.csproj.CoreCompileInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.csproj.CopyComplete
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\refint\TrimRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\TrimRule.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\TrimRule\obj\Debug\net6.0\ref\TrimRule.dll

@@ -1,0 +1,15 @@
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\bin\Debug\net6.0\AddCounterRule.deps.json
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\bin\Debug\net6.0\AddCounterRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\bin\Debug\net6.0\AddCounterRule.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\bin\Debug\net6.0\Contract.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\bin\Debug\net6.0\Contract.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.csproj.AssemblyReference.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.AssemblyInfoInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.AssemblyInfo.cs
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.csproj.CoreCompileInputs.cache
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.csproj.CopyComplete
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\refint\AddCounterRule.dll
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\AddCounterRule.pdb
+C:\Users\lecon\OneDrive\Tài liệu\D\CNTT_K20\KY_5\Windows\DA\batch-rename-main\AddCounterRule\obj\Debug\net6.0\ref\AddCounterRule.dll
