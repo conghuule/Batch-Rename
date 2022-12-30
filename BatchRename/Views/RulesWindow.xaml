@@ -6,10 +6,45 @@
     xmlns:local="clr-namespace:BatchRename.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Pick Rule"
-    Width="800"
-    Height="450"
+    Width="1000"
+    Height="600"
     Loaded="Window_Loaded"
     mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                                <TabPanel
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    Background="Transparent"
+                                    IsItemsHost="True" />
+                            </ScrollViewer>
+
+                            <Border Grid.Column="1">
+                                <StackPanel>
+                                    <ContentPresenter
+                                        Margin="0,0,0,0"
+                                        ContentSource="SelectedContent"
+                                        SnapsToDevicePixels="True" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Border Padding="12" Background="#e1e1e1">
         <DockPanel LastChildFill="True">
             <StackPanel
@@ -28,57 +63,359 @@
                 <Button
                     MinWidth="120"
                     Background="#a3a3a3"
-                    Click="CancelButton_Click"
                     Content="Cancel"
                     Foreground="#000"
                     IsCancel="True"
                     Style="{StaticResource button}" />
             </StackPanel>
 
-            <Border
-                Padding="0"
-                Background="#fff"
-                CornerRadius="6">
-                <StackPanel DockPanel.Dock="Left">
-                    <ListView
-                        Name="rulesListView"
-                        MaxHeight="320"
-                        HorizontalContentAlignment="Center"
-                        BorderThickness="0"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Button
-                                  
-                                    Width="170"
-                                    Background="#3b82f6"
-                                    Content="{Binding Name}"
-                                    FontSize="14"
-                                    Style="{StaticResource button}" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackPanel>
-            </Border>
 
-            <Border
-                Margin="8,0,0,0"
-                Padding="10"
-                Background="#fff"
-                CornerRadius="6">
-                <StackPanel>
-                    <TextBlock
-                        FontSize="20"
-                        FontWeight="Bold"
-                        Text="Configuration" />
-                </StackPanel>
-            </Border>
+            <Grid>
+                <Border Background="#fff" CornerRadius="6">
+                    <TabControl
+                        x:Name="MyTab"
+                        Style="{DynamicResource TabControlStyle}"
+                        TabStripPlacement="Left">
+                        <TabControl.Resources>
+                            <Style TargetType="TabItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border
+                                                Name="Border"
+                                                Margin="2,0"
+                                                BorderBrush="White"
+                                                BorderThickness="1,1,1,1"
+                                                CornerRadius="4,4,0,0">
+                                                <ContentPresenter
+                                                    x:Name="ContentSite"
+                                                    Margin="10,10"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    ContentSource="Header" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#3b82f6" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter TargetName="Border" Property="Background" Value="#d3d3d3" />
+                                                    <Setter Property="Foreground" Value="Black" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Resources>
+
+                        <TabItem
+                            x:Name="AddCounterTabItem"
+                            Width="200"
+                            Margin="1,1,0,0"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="Add counter">
+                            <StackPanel>
+                                <Grid Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Margin="0,30,0,0"
+                                        Content="Start Value"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="#4b5563" />
+                                    <TextBox
+                                        Name="StartValueTextBox"
+                                        Grid.Row="1"
+                                        Width="660"
+                                        Height="35"
+                                        Margin="0,10,0,0"
+                                        Padding="5,5,5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                                <Grid Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Margin="0,30,0,0"
+                                        Content="Step"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="#4b5563" />
+                                    <TextBox
+                                        Name="StepTextBox"
+                                        Grid.Row="1"
+                                        Width="660"
+                                        Height="35"
+                                        Margin="0,10,0,0"
+                                        Padding="5,5,5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                                <Grid Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Margin="0,30,0,0"
+                                        Content="Number of digits"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="#4b5563" />
+                                    <TextBox
+                                        Name="NumberOfDigitsTextBox"
+                                        Grid.Row="1"
+                                        Width="660"
+                                        Height="35"
+                                        Margin="0,10,0,0"
+                                        Padding="5,5,5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem
+                            x:Name="AddPrefixTabItem"
+                            Width="200"
+                            Margin="1,1,0,0"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="Add prefix">
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Margin="0,30,0,0"
+                                    Content="Add prefix"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Foreground="#4b5563" />
+                                <TextBox
+                                    Name="AddPrefixTextBox"
+                                    Grid.Row="1"
+                                    Width="660"
+                                    Height="35"
+                                    Margin="0,25,0,0"
+                                    Padding="5,5,5,5"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Foreground="black"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem
+                            x:Name="AddSuffixTabItem"
+                            Width="200"
+                            Margin="1,1,0,0"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="Add suffix">
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Margin="0,30,0,0"
+                                    Content="Add suffix"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Foreground="#4b5563" />
+                                <TextBox
+                                    Name="AddSuffixTextBox"
+                                    Grid.Row="1"
+                                    Height="35"
+                                    MinWidth="500"
+                                    Margin="0,25,0,0"
+                                    Padding="5,5,5,5"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Foreground="black"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem
+                            x:Name="ChangeExtensionTabItem"
+                            Width="200"
+                            Margin="1,1,0,0"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="Change Extension">
+                            <StackPanel>
+                                <Grid Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Margin="0,30,0,0"
+                                        Content="Old Extension"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="#4b5563" />
+                                    <TextBox
+                                        Name="OldExtensionTextBox"
+                                        Grid.Row="1"
+                                        Height="35"
+                                        MinWidth="500"
+                                        Margin="0,25,0,0"
+                                        Padding="5,5,5,5"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                                <Grid Margin="20,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Margin="0,60,0,0"
+                                        Content="New Extension"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="#4b5563" />
+                                    <TextBox
+                                        Name="NewExtensionTextBox"
+                                        Grid.Row="1"
+                                        Height="35"
+                                        MinWidth="500"
+                                        Margin="0,25,0,0"
+                                        Padding="5,5,5,5"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem
+                            x:Name="ReplaceTabItem"
+                            Width="200"
+                            Margin="1,1,0,0"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="Replace Character">
+                            <Grid Margin="20,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Margin="0,30,0,0"
+                                    Content="Replace Character (seperate by '/')"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Foreground="#4b5563" />
+                                <TextBox
+                                    Name="FindCharacterTextBox"
+                                    Grid.Row="1"
+                                    Height="35"
+                                    MinWidth="500"
+                                    Margin="0,25,0,0"
+                                    Padding="5,5,5,5"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Foreground="black"
+                                    Text="-/_" />
+                                <TextBox
+                                    Name="ReplaceCharacterTextBox"
+                                    Grid.Row="2"
+                                    Height="35"
+                                    MinWidth="500"
+                                    Margin="0,25,0,0"
+                                    Padding="5,5,5,5"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Foreground="black" />
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem
+                            x:Name="ToPascalCaseTabItem"
+                            Width="200"
+                            Margin="1,1,0,0"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="To PascalCase">
+                            <Label
+                                Margin="35,35,0,0"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="#4b5563">
+                                Rule to pascal case in file name
+                            </Label>
+                        </TabItem>
+
+                        <TabItem
+                            x:Name="ToLowerCaseTabItem"
+                            Width="200"
+                            Margin="1,1,0,1"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="To Lowercase">
+                            <Label
+                                Margin="35,35,0,0"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="#4b5563">
+                                All character to lowercase in file name
+                            </Label>
+                        </TabItem>
+
+                        <TabItem
+                            x:Name="RemoveAllSpaceTabItem"
+                            Width="200"
+                            Margin="1,1,0,0"
+                            Background="#3b82f6"
+                            FontSize="16"
+                            Header="Remove all space">
+                            <Label
+                                Margin="35,35,0,0"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="#4b5563">
+                                Remove all space in file name
+                            </Label>
+                        </TabItem>
+                    </TabControl>
+                </Border>
+            </Grid>
         </DockPanel>
     </Border>
 </Window>

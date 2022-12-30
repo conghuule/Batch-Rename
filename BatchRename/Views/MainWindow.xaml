@@ -39,25 +39,24 @@
                         Padding="8,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Cursor="Hand"
-                        Click="Preview_Click">
+                        Click="Preview_Click"
+                        Cursor="Hand">
                         <StackPanel>
                             <Image
                                 Width="20"
                                 Height="20"
                                 RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="/Images/eye.png" 
-                                />
+                                Source="/Images/eye.png" />
                             <TextBlock Text="Preview" />
                         </StackPanel>
-                    </Button> 
+                    </Button>
                     <Button
                         Margin="4,0"
                         Padding="8,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Cursor="Hand"
-                        Click="Start_Click">
+                        Click="Start_Click"
+                        Cursor="Hand">
                         <StackPanel>
                             <Image
                                 Width="20"
@@ -146,12 +145,12 @@
                             RowStyle="{DynamicResource DataGridRowStyle1}"
                             Style="{DynamicResource DataGridStyle1}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn
+                                <!--<DataGridTextColumn
                                     Width="auto"
                                     Binding="{Binding Number}"
                                     CanUserResize="False"
                                     Header="#"
-                                    IsReadOnly="True" />
+                                    IsReadOnly="True" />-->
                                 <DataGridTemplateColumn
                                     Width="*"
                                     Header="Name"
@@ -205,109 +204,118 @@
                     <Border
                         Grid.Row="1"
                         Padding="20"
+                        AllowDrop="True"
                         Background="#EFF2F7"
-                        CornerRadius="8"  
-                        AllowDrop="True" 
-                        DragEnter="Handle_DragEnter" 
-                        DragLeave="Handle_DragLeave" 
+                        CornerRadius="8"
+                        DragEnter="Handle_DragEnter"
+                        DragLeave="Handle_DragLeave"
                         Drop="Handle_DropFile">
                         <StackPanel>
-                        <Grid Grid.Column="1" Name="filesPanel">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
+                            <Grid Name="filesPanel" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
 
-                            <StackPanel>
-                                <TextBlock
-                                    Margin="0,0,0,12"
-                                    FontSize="16"
-                                    FontWeight="Bold"
-                                    Foreground="#4b5563"
-                                    Text="Actions" />
-                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <component:Button
-                                        BackgroundColor="#3b82f6"
-                                        ImageSource="/Images/add.png"
-                                        Text="Add files" 
-                                        OnClick="AddFiles_Click"/>
-                                    <component:Button
-                                        BackgroundColor="#3b82f6"
-                                        ImageSource="/Images/add.png"
-                                        Text="Add folder" 
-                                        OnClick="AddFolder_Click"/>
-                                    <component:Button
-                                        BackgroundColor="#ef4444"
-                                        ImageSource="/Images/remove.png"
-                                        Text="Remove" 
-                                        OnClick="RemoveFiles_Click"/>
-                                </StackPanel>
                                 <StackPanel>
                                     <TextBlock
-                                        Margin="0,12"
+                                        Margin="0,0,0,12"
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Foreground="#4b5563"
-                                        Text="All files" />
+                                        Text="Actions" />
+                                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                        <component:Button
+                                            BackgroundColor="#3b82f6"
+                                            ImageSource="/Images/add.png"
+                                            OnClick="AddFiles_Click"
+                                            Text="Add files" />
+                                        <component:Button
+                                            BackgroundColor="#3b82f6"
+                                            ImageSource="/Images/add.png"
+                                            OnClick="AddFolder_Click"
+                                            Text="Add folder" />
+                                        <component:Button
+                                            BackgroundColor="#ef4444"
+                                            ImageSource="/Images/remove.png"
+                                            OnClick="RemoveFiles_Click"
+                                            Text="Remove" />
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock
+                                            Margin="0,12"
+                                            FontSize="16"
+                                            FontWeight="Bold"
+                                            Foreground="#4b5563"
+                                            Text="All files" />
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <DataGrid
-                                Name="pickedFilesDataGrid"
-                                Grid.RowSpan="6"
-                                Grid.ColumnSpan="3"
-                                CellStyle="{DynamicResource DataGridCellStyle1}"
-                                ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                RowStyle="{DynamicResource DataGridRowStyle1}"
-                                Style="{DynamicResource DataGridStyle1}">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn
+                                <DataGrid
+                                    Name="pickedFilesDataGrid"
+                                    Grid.RowSpan="6"
+                                    Grid.ColumnSpan="3"
+                                    CellStyle="{DynamicResource DataGridCellStyle1}"
+                                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                    RowStyle="{DynamicResource DataGridRowStyle1}"
+                                    Style="{DynamicResource DataGridStyle1}">
+                                    <DataGrid.Columns>
+                                        <!--<DataGridTextColumn
                                         Width="auto"
                                         Binding="{Binding Number}"
                                         CanUserResize="False"
                                         Header="#"
-                                        IsReadOnly="True" />
-                                    <DataGridTemplateColumn
-                                        Width="*"
-                                        Header="Filename"
-                                        IsReadOnly="True">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
+                                        IsReadOnly="True" />-->
+                                        <DataGridTemplateColumn
+                                            Width="*"
+                                            Header="Filename"
+                                            IsReadOnly="True">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
 
-                                                    <TextBlock VerticalAlignment="Center" Text="{Binding Filename}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding Newname}"
-                                        Header="Newname"
-                                        IsReadOnly="True" />
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding Path}"
-                                        Header="Path"
-                                        IsReadOnly="True" />
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding Error}"
-                                        Header="Error"
-                                        IsReadOnly="True" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            
-                        </Grid>
-                            <Grid Height="300" Margin="0 50 0 0" Name="dragdropPanel" Visibility="Hidden">
-                                <Rectangle Name="DragDropPanel"  RadiusX="12" RadiusY="12" Stroke="Black" StrokeDashArray="6,6">
+                                                        <TextBlock VerticalAlignment="Center" Text="{Binding Filename}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Newname}"
+                                            Header="Newname"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Path}"
+                                            Header="Path"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn
+                                            Width="*"
+                                            Binding="{Binding Error}"
+                                            Header="Error"
+                                            IsReadOnly="True" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </Grid>
+                            <Grid
+                                Name="dragdropPanel"
+                                Height="300"
+                                Margin="0,50,0,0"
+                                Visibility="Hidden">
+                                <Rectangle
+                                    Name="DragDropPanel"
+                                    RadiusX="12"
+                                    RadiusY="12"
+                                    Stroke="Black"
+                                    StrokeDashArray="6,6">
                                     <Rectangle.Fill>
-                                        <ImageBrush ImageSource="/Images/dropfile.jpg" Stretch="UniformToFill"></ImageBrush>
+                                        <ImageBrush ImageSource="/Images/dropfile.jpg" Stretch="UniformToFill" />
                                     </Rectangle.Fill>
                                 </Rectangle>
                             </Grid>

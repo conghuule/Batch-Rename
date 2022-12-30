@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -20,51 +21,67 @@ namespace BatchRename.Views
     /// </summary>
     public partial class RulesWindow : Window
     {
-        public BindingList<Rule> rules;
-        public Rule newRule;
+        public string newRule { get; set; }
+
         public RulesWindow()
         {
             InitializeComponent();
         }
 
-        public class Rule: INotifyPropertyChanged, ICloneable
-        {
-            public string Name { get; set; }
-
-            public event PropertyChangedEventHandler? PropertyChanged;
-
-            public object Clone()
-            {
-                return MemberwiseClone();
-            }
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            rules = new BindingList<Rule>();
-            rules.Add(new Rule { Name = "Add counter" });
-            rules.Add(new Rule { Name = "Add prefix" });
-            rules.Add(new Rule { Name = "Add suffix" });
-            rules.Add(new Rule { Name = "Remove all space" });
-            rules.Add(new Rule { Name = "All character to lowercase" });
-            rulesListView.ItemsSource = rules;
+
         }
 
         private void addRuleButton_Click(object sender, RoutedEventArgs e)
         {
-            int id = -1;
-            id = rulesListView.SelectedIndex;
-            if(id != -1) {
-                newRule = new Rule();
-                newRule.Name = rules[id].Name;
-                DialogResult = true; 
-            }
-        }
+            if (AddCounterTabItem.IsSelected)
+            {
+                string startFrom = StartValueTextBox.Text;
+                string step = StepTextBox.Text;
+                string numberOfDigits = NumberOfDigitsTextBox.Text;
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-            this.Close();
+                newRule = "AddCounter "+  startFrom + " " + step + " " + numberOfDigits;
+            }
+            else if (AddPrefixTabItem.IsSelected)
+            {
+                string prefix = AddPrefixTextBox.Text;
+
+                newRule = "AddPrefix " + prefix;
+            }
+            else if (AddSuffixTabItem.IsSelected)
+            {
+                string suffix = AddSuffixTextBox.Text;
+
+                newRule = "AddSuffix " + suffix;
+            }
+            else if (ChangeExtensionTabItem.IsSelected) {
+                string oldExtension = OldExtensionTextBox.Text;
+                string newExtension = NewExtensionTextBox.Text;
+
+                newRule = "ChangeExtension " + oldExtension + " " + newExtension;
+            }
+            else if (ReplaceTabItem.IsSelected)
+            {
+                string findCharacter = FindCharacterTextBox.Text;
+                string replaceCharacter = ReplaceCharacterTextBox.Text;
+
+                newRule = "ReplaceCharacter " + findCharacter + " " + replaceCharacter;
+            }
+            else if (ToPascalCaseTabItem.IsSelected)
+            {
+                newRule = "PascalCase";
+            }
+            else if (ToLowerCaseTabItem.IsSelected)
+            {
+                newRule = "LowerCaseNoSpace";
+            }
+            else if (RemoveAllSpaceTabItem.IsSelected)
+            {
+                newRule = "Trim";
+            }
+
+            DialogResult = true;
         }
     }
 }

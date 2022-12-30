@@ -39,22 +39,20 @@ namespace BatchRename
             InitializeComponent();
 
         }
-        static void Swap<T>(ref T lhs, ref T rhs)
-        {
-            T temp;
-            temp = lhs;
-            lhs = rhs;
-            rhs = temp;
-        }
-        public class PickedRule
+
+        
+
+        public class PickedRule : INotifyPropertyChanged
         {
             public string Number { get; set; } = "";
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
+
+            public event PropertyChangedEventHandler? PropertyChanged;
         }
 
 
-        public class PickedFile: INotifyPropertyChanged
+        public class PickedFile : INotifyPropertyChanged
         {
             public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -86,10 +84,14 @@ namespace BatchRename
 
             if (screen.ShowDialog() == true)
             {
-                RulesWindow.Rule data = (RulesWindow.Rule)screen.newRule.Clone();
-                PickedRule insertRule = new PickedRule();
-                insertRule.Name = data.Name;
-                pickedRules.Add(insertRule);
+                //RulesWindow.Rule data = (RulesWindow.Rule)screen.newRule.Clone();
+                //PickedRule insertRule = new PickedRule();
+                //insertRule.Name = data.Name;
+                //pickedRules.Add(insertRule);
+                string newRule = screen.newRule;
+                //MessageBox.Show(newRule);
+                pickedRules.Add(new PickedRule { Name = newRule, Description = newRule });
+
             }
             else
             {
