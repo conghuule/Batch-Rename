@@ -29,7 +29,7 @@ using TrimRule;
 using BatchRename.Models;
 using System.Configuration;
 using System.IO.Packaging;
-using MS.WindowsAPICodePack.Internal;
+using SaveWindowPosition;
 
 namespace BatchRename
 {
@@ -41,12 +41,38 @@ namespace BatchRename
         public MainWindow()
         {
             InitializeComponent();
+
+            var userPrefs = new UserPreferences();
+
+            this.Height = userPrefs.WindowHeight;
+            this.Width = userPrefs.WindowWidth;
+            this.Top = userPrefs.WindowTop;
+            this.Left = userPrefs.WindowLeft;
+            this.WindowState = userPrefs.WindowState;
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            var userPrefs = new UserPreferences();
+
+            userPrefs.WindowHeight = this.Height;
+            userPrefs.WindowWidth = this.Width;
+            userPrefs.WindowTop = this.Top;
+            userPrefs.WindowLeft = this.Left;
+            userPrefs.WindowState = this.WindowState;
+
+            userPrefs.Save();
         }
 
         private List<string> _fileAddedList;
         ObservableCollection<string> pickedRuleList;
         ObservableCollection<PickedRule> pickedRules;
         ObservableCollection<PickedFile> pickedFiles;
+        private double _windowTop;
+        private double _windowLeft;
+        private double _windowHeight;
+        private double _windowWidth;
+        private WindowState _windowState;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
