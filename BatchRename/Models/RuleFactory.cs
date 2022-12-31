@@ -1,8 +1,11 @@
 ﻿using Contract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BatchRename
+namespace BatchRename.Models
 {
     public class RuleFactory
     {
@@ -16,7 +19,7 @@ namespace BatchRename
         private static RuleFactory? _instance = null;
         public static RuleFactory Instance()
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = new RuleFactory();
             }
@@ -31,7 +34,7 @@ namespace BatchRename
             var keyword = tokens[0];
             IRule? result = null;
 
-            if(_prototypes.ContainsKey(keyword))
+            if (_prototypes.ContainsKey(keyword))
             {
                 IRule prototype = _prototypes[keyword];
                 result = prototype.Parse(data);

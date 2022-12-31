@@ -26,6 +26,7 @@ using AddCounterRule;
 using System.ComponentModel;
 using ChangeExtensionRule;
 using TrimRule;
+using BatchRename.Models;
 
 namespace BatchRename
 {
@@ -37,30 +38,6 @@ namespace BatchRename
         public MainWindow()
         {
             InitializeComponent();
-
-        }
-
-        
-
-        public class PickedRule : INotifyPropertyChanged
-        {
-            public string Number { get; set; } = "";
-            public string Name { get; set; } = "";
-            public string Description { get; set; } = "";
-
-            public event PropertyChangedEventHandler? PropertyChanged;
-        }
-
-
-        public class PickedFile : INotifyPropertyChanged
-        {
-            public event PropertyChangedEventHandler? PropertyChanged;
-
-            public string Filename { get; set; } = "";
-            public string Newname { get; set; } = "";
-            public string Path { get; set; } = "";
-            public string Error { get; set; } = "";
-            public string Number { get; set; } = "";
         }
 
         private List<string> _fileAddedList;
@@ -84,18 +61,15 @@ namespace BatchRename
 
             if (screen.ShowDialog() == true)
             {
-                //RulesWindow.Rule data = (RulesWindow.Rule)screen.newRule.Clone();
-                //PickedRule insertRule = new PickedRule();
-                //insertRule.Name = data.Name;
-                //pickedRules.Add(insertRule);
                 string newRule = screen.newRule;
-                //MessageBox.Show(newRule);
-                pickedRules.Add(new PickedRule { Name = newRule, Description = newRule });
-
+                RuleDetail detail = new RuleDetail() { Rule = newRule };
+                string ruleName = detail.GetName();
+                string ruleDescription = detail.GetDescription();
+                pickedRules.Add(new PickedRule { Name = ruleName, Description = ruleDescription });
             }
             else
             {
-
+                // do nothing
             }
         }
 
