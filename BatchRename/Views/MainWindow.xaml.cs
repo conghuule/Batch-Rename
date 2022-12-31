@@ -29,6 +29,7 @@ using TrimRule;
 using BatchRename.Models;
 using System.Configuration;
 using System.IO.Packaging;
+using MS.WindowsAPICodePack.Internal;
 
 namespace BatchRename
 {
@@ -77,7 +78,7 @@ namespace BatchRename
             pickedRuleList = new ObservableCollection<string>();
 
             string? preset = ConfigurationManager.AppSettings["Preset"];
-            if(preset != null && preset != "")
+            if (preset != null && preset != "")
             {
                 var rules = preset.Split(", ", StringSplitOptions.None);
                 foreach (var rule in rules)
@@ -91,7 +92,6 @@ namespace BatchRename
                 }
             }
         }
-
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
@@ -115,7 +115,8 @@ namespace BatchRename
                 if (isExistRule)
                 {
                     MessageBox.Show("Rule is exist", "", MessageBoxButton.OK, MessageBoxImage.Error);
-                } else
+                }
+                else
                 {
                     string ruleName = detail.GetName();
                     string ruleDescription = detail.GetDescription();
@@ -379,6 +380,52 @@ namespace BatchRename
             configFile.Save(ConfigurationSaveMode.Minimal);
 
             MessageBox.Show("Save preset successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            int index = pickedRulesDataGrid.SelectedIndex;
+            PickedRule pickedRule = pickedRules[index];
+            string oldRule = pickedRuleList[index];
+
+            var screen = (dynamic)null;
+            switch (pickedRule.Name)
+            {
+                case "AddCounter":
+                    screen = new EditAddCounterWindow(oldRule);
+                    break;
+                case "AddPrefix":
+                    screen = new EditAddPrefixWindow(oldRule);
+                    break;
+                case "AddSuffix":
+                    screen = new EditAddSuffixWindow(oldRule);
+                    break;
+                case "ChangeExtension":
+                    screen = new EditChangeExtensionWindow(oldRule);
+                    break;
+                case "ReplaceCharacter":
+                    screen = new EditReplaceWindow(oldRule);
+                    break;
+                case "PascalCase":
+                case "LowerCaseNoSpace":
+                case "Trim":
+                    MessageBox.Show("This rule has no parameters", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                default:
+                    break;
+            }
+
+            if (screen.ShowDialog() == true)
+            {
+                string newRule = screen.newRule;
+                RuleDetail detail = new RuleDetail() { Rule = newRule };
+
+                string ruleName = detail.GetName();
+                string ruleDescription = detail.GetDescription();
+                pickedRules[index] = new PickedRule { Name = ruleName, Description = ruleDescription };
+
+                pickedRuleList[index] = newRule;
+            }
         }
     }
 }

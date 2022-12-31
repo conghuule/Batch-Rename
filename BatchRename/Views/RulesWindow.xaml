@@ -129,18 +129,41 @@
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Foreground="#4b5563" />
-                                    <TextBox
-                                        Name="StartValueTextBox"
+                                    <Canvas
                                         Grid.Row="1"
-                                        Width="660"
                                         Height="35"
-                                        Margin="0,10,0,0"
-                                        Padding="5,5,5,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        FontSize="16"
-                                        Foreground="black"
-                                        TextWrapping="Wrap" />
+                                        Margin="0,16,0,0">
+                                        <TextBox
+                                            Name="StartValueTextBox"
+                                            Width="660"
+                                            Height="35"
+                                            Padding="5,5,5,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="black"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Width="660"
+                                            Height="35"
+                                            Margin="8,5,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="DarkGray"
+                                            IsHitTestVisible="False"
+                                            Text="Enter start value">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=StartValueTextBox}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Canvas>
                                 </Grid>
                                 <Grid Margin="20,0,0,0">
                                     <Grid.RowDefinitions>
@@ -154,18 +177,41 @@
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Foreground="#4b5563" />
-                                    <TextBox
-                                        Name="StepTextBox"
+                                    <Canvas
                                         Grid.Row="1"
-                                        Width="660"
                                         Height="35"
-                                        Margin="0,10,0,0"
-                                        Padding="5,5,5,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        FontSize="16"
-                                        Foreground="black"
-                                        TextWrapping="Wrap" />
+                                        Margin="0,16,0,0">
+                                        <TextBox
+                                            Name="StepTextBox"
+                                            Width="660"
+                                            Height="35"
+                                            Padding="5,5,5,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="black"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Width="660"
+                                            Height="35"
+                                            Margin="8,5,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="DarkGray"
+                                            IsHitTestVisible="False"
+                                            Text="Enter step value">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=StepTextBox}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Canvas>
                                 </Grid>
                                 <Grid Margin="20,0,0,0">
                                     <Grid.RowDefinitions>
@@ -179,18 +225,41 @@
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Foreground="#4b5563" />
-                                    <TextBox
-                                        Name="NumberOfDigitsTextBox"
+                                    <Canvas
                                         Grid.Row="1"
-                                        Width="660"
                                         Height="35"
-                                        Margin="0,10,0,0"
-                                        Padding="5,5,5,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        FontSize="16"
-                                        Foreground="black"
-                                        TextWrapping="Wrap" />
+                                        Margin="0,16,0,0">
+                                        <TextBox
+                                            Name="NumberOfDigitsTextBox"
+                                            Width="660"
+                                            Height="35"
+                                            Padding="5,5,5,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="black"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Width="660"
+                                            Height="35"
+                                            Margin="8,5,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="DarkGray"
+                                            IsHitTestVisible="False"
+                                            Text="Enter number of digits">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=NumberOfDigitsTextBox}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Canvas>
                                 </Grid>
                             </StackPanel>
                         </TabItem>
@@ -214,18 +283,41 @@
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="#4b5563" />
-                                <TextBox
-                                    Name="AddPrefixTextBox"
+                                <Canvas
                                     Grid.Row="1"
-                                    Width="660"
                                     Height="35"
-                                    Margin="0,25,0,0"
-                                    Padding="5,5,5,5"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    FontSize="16"
-                                    Foreground="black"
-                                    TextWrapping="Wrap" />
+                                    Margin="0,16,0,0">
+                                    <TextBox
+                                        Name="AddPrefixTextBox"
+                                        Width="660"
+                                        Height="35"
+                                        Padding="5,5,5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Width="660"
+                                        Height="35"
+                                        Margin="8,5,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="DarkGray"
+                                        IsHitTestVisible="False"
+                                        Text="Enter a prefix">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=AddPrefixTextBox}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Canvas>
                             </Grid>
                         </TabItem>
 
@@ -248,17 +340,41 @@
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="#4b5563" />
-                                <TextBox
-                                    Name="AddSuffixTextBox"
+                                <Canvas
                                     Grid.Row="1"
                                     Height="35"
-                                    MinWidth="500"
-                                    Margin="0,25,0,0"
-                                    Padding="5,5,5,5"
-                                    VerticalAlignment="Center"
-                                    FontSize="16"
-                                    Foreground="black"
-                                    TextWrapping="Wrap" />
+                                    Margin="0,16,0,0">
+                                    <TextBox
+                                        Name="AddSuffixTextBox"
+                                        Width="660"
+                                        Height="35"
+                                        Padding="5,5,5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Width="660"
+                                        Height="35"
+                                        Margin="8,5,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="DarkGray"
+                                        IsHitTestVisible="False"
+                                        Text="Enter a suffix">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=AddSuffixTextBox}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Canvas>
                             </Grid>
                         </TabItem>
 
@@ -282,17 +398,41 @@
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Foreground="#4b5563" />
-                                    <TextBox
-                                        Name="OldExtensionTextBox"
+                                    <Canvas
                                         Grid.Row="1"
                                         Height="35"
-                                        MinWidth="500"
-                                        Margin="0,25,0,0"
-                                        Padding="5,5,5,5"
-                                        VerticalAlignment="Center"
-                                        FontSize="16"
-                                        Foreground="black"
-                                        TextWrapping="Wrap" />
+                                        Margin="0,16,0,0">
+                                        <TextBox
+                                            Name="OldExtensionTextBox"
+                                            Width="660"
+                                            Height="35"
+                                            Padding="5,5,5,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="black"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Width="660"
+                                            Height="35"
+                                            Margin="8,5,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="DarkGray"
+                                            IsHitTestVisible="False"
+                                            Text="Enter old extension">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=OldExtensionTextBox}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Canvas>
                                 </Grid>
                                 <Grid Margin="20,0,0,0">
                                     <Grid.RowDefinitions>
@@ -306,17 +446,41 @@
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Foreground="#4b5563" />
-                                    <TextBox
-                                        Name="NewExtensionTextBox"
+                                    <Canvas
                                         Grid.Row="1"
                                         Height="35"
-                                        MinWidth="500"
-                                        Margin="0,25,0,0"
-                                        Padding="5,5,5,5"
-                                        VerticalAlignment="Center"
-                                        FontSize="16"
-                                        Foreground="black"
-                                        TextWrapping="Wrap" />
+                                        Margin="0,16,0,0">
+                                        <TextBox
+                                            Name="NewExtensionTextBox"
+                                            Width="660"
+                                            Height="35"
+                                            Padding="5,5,5,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Foreground="black"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Width="660"
+                                            Height="35"
+                                            Margin="8,5,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="DarkGray"
+                                            IsHitTestVisible="False"
+                                            Text="Enter new extension">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=NewExtensionTextBox}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Canvas>
                                 </Grid>
                             </StackPanel>
                         </TabItem>
@@ -337,31 +501,80 @@
                                 <Label
                                     Grid.Row="0"
                                     Margin="0,30,0,0"
-                                    Content="Replace Character (seperate by '/')"
+                                    Content="Replace characters"
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="#4b5563" />
-                                <TextBox
-                                    Name="FindCharacterTextBox"
+                                <Canvas
                                     Grid.Row="1"
                                     Height="35"
-                                    MinWidth="500"
-                                    Margin="0,25,0,0"
-                                    Padding="5,5,5,5"
-                                    VerticalAlignment="Center"
-                                    FontSize="16"
-                                    Foreground="black"
-                                    Text="-/_" />
-                                <TextBox
-                                    Name="ReplaceCharacterTextBox"
+                                    Margin="0,20,0,0">
+                                    <TextBox
+                                        Name="FindCharacterTextBox"
+                                        Width="660"
+                                        Height="35"
+                                        Padding="5,5,5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Width="660"
+                                        Height="35"
+                                        Margin="8,5,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="DarkGray"
+                                        IsHitTestVisible="False"
+                                        Text="Enter old characters">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=FindCharacterTextBox}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Canvas>
+                                <Canvas
                                     Grid.Row="2"
                                     Height="35"
-                                    MinWidth="500"
-                                    Margin="0,25,0,0"
-                                    Padding="5,5,5,5"
-                                    VerticalAlignment="Center"
-                                    FontSize="16"
-                                    Foreground="black" />
+                                    Margin="0,32,0,0">
+                                    <TextBox
+                                        Name="ReplaceCharacterTextBox"
+                                        Width="660"
+                                        Height="35"
+                                        Padding="5,5,5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="16"
+                                        Foreground="black"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Width="660"
+                                        Height="35"
+                                        Margin="8,5,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="DarkGray"
+                                        IsHitTestVisible="False"
+                                        Text="Enter new characters">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=ReplaceCharacterTextBox}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Canvas>
                             </Grid>
                         </TabItem>
 

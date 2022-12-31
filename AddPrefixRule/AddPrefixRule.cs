@@ -2,7 +2,7 @@
 
 namespace AddPrefixRule
 {
-    class AddPrefix : IRule
+    public class AddPrefix : IRule
     {
         public string Prefix { get; set; }
 

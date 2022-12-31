@@ -2,7 +2,7 @@
 
 namespace AddSuffixRule
 {
-    class AddSuffix : IRule
+    public class AddSuffix : IRule
     {
         public string Suffix { get; set; }
 

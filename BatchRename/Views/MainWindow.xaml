@@ -23,8 +23,8 @@
                         Margin="4,0"
                         Padding="8,0"
                         Background="Transparent"
-                        Click="Save_Click"
                         BorderThickness="0"
+                        Click="Save_Click"
                         Cursor="Hand">
                         <StackPanel>
                             <Image
@@ -145,13 +145,12 @@
                             ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                             RowStyle="{DynamicResource DataGridRowStyle1}"
                             Style="{DynamicResource DataGridStyle1}">
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Edit parameters" Click="MenuItem_Click" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
                             <DataGrid.Columns>
-                                <!--<DataGridTextColumn
-                                    Width="auto"
-                                    Binding="{Binding Number}"
-                                    CanUserResize="False"
-                                    Header="#"
-                                    IsReadOnly="True" />-->
                                 <DataGridTemplateColumn
                                     Width="*"
                                     Header="Name"
@@ -261,17 +260,12 @@
                                     Name="pickedFilesDataGrid"
                                     Grid.RowSpan="6"
                                     Grid.ColumnSpan="3"
+                                    Height="500"
                                     CellStyle="{DynamicResource DataGridCellStyle1}"
                                     ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                                     RowStyle="{DynamicResource DataGridRowStyle1}"
                                     Style="{DynamicResource DataGridStyle1}">
                                     <DataGrid.Columns>
-                                        <!--<DataGridTextColumn
-                                        Width="auto"
-                                        Binding="{Binding Number}"
-                                        CanUserResize="False"
-                                        Header="#"
-                                        IsReadOnly="True" />-->
                                         <DataGridTemplateColumn
                                             Width="*"
                                             Header="Filename"

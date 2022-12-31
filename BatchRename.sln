@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LowerCaseNoSpaceRule", "Low
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PascalCaseRule", "PascalCaseRule\PascalCaseRule.csproj", "{2CC7C698-BF4A-4093-9B39-250D969AD1F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReplaceCharacter", "ReplaceCharacter\ReplaceCharacter.csproj", "{39EB50F4-088C-4A88-91F4-D3E15AB1A875}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReplaceCharacterRule", "ReplaceCharacter\ReplaceCharacterRule.csproj", "{39EB50F4-088C-4A88-91F4-D3E15AB1A875}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

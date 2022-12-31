@@ -1,7 +1,7 @@
 ﻿using Contract;
 using System.Text;
 
-namespace ReplaceCharacter
+namespace ReplaceCharacterRule
 {
     public class ReplaceCharacter : IRule
     {
