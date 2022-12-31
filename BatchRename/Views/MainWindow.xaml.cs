@@ -27,6 +27,8 @@ using System.ComponentModel;
 using ChangeExtensionRule;
 using TrimRule;
 using BatchRename.Models;
+using System.Configuration;
+using System.IO.Packaging;
 
 namespace BatchRename
 {
@@ -73,6 +75,21 @@ namespace BatchRename
                 }
             }
             pickedRuleList = new ObservableCollection<string>();
+
+            string? preset = ConfigurationManager.AppSettings["Preset"];
+            if(preset != null && preset != "")
+            {
+                var rules = preset.Split(", ", StringSplitOptions.None);
+                foreach (var rule in rules)
+                {
+                    pickedRuleList.Add(rule);
+
+                    RuleDetail detail = new RuleDetail() { Rule = rule };
+                    string ruleName = detail.GetName();
+                    string ruleDescription = detail.GetDescription();
+                    pickedRules.Add(new PickedRule { Name = ruleName, Description = ruleDescription });
+                }
+            }
         }
 
 
@@ -106,10 +123,6 @@ namespace BatchRename
 
                     pickedRuleList.Add(newRule);
                 }
-            }
-            else
-            {
-                // do nothing
             }
         }
 
@@ -356,61 +369,16 @@ namespace BatchRename
             dragdropPanel.Visibility = Visibility.Hidden;
         }
 
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            string preset = String.Join(", ", pickedRuleList.ToArray());
 
-        //public string First { get; set; } = "     abc txt google.txt";
-        //public string Second { get; set; } = "123 giant.pdf";
-        //public string Third { get; set; } = "   batch UltraMegaCop.txt      ";
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var setttings = configFile.AppSettings.Settings;
+            setttings["Preset"].Value = preset;
+            configFile.Save(ConfigurationSaveMode.Minimal);
 
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var exeFolder = AppDomain.CurrentDomain.BaseDirectory;
-        //    var folderInfo = new DirectoryInfo(exeFolder);
-        //    var dllFiles = folderInfo.GetFiles("*.dll");
-
-        //    foreach (var file in dllFiles)
-        //    {
-        //        var assembly = Assembly.LoadFrom(file.FullName);
-        //        var types = assembly.GetTypes();
-
-        //        foreach (var type in types)
-        //        {
-        //            if (type.IsClass && typeof(IRule).IsAssignableFrom(type))
-        //            {
-        //                IRule rule = (IRule)Activator.CreateInstance(type)!;
-        //                RuleFactory.Register(rule);
-        //            }
-        //        }
-        //    }
-
-        //    string presetPath = "Rules.txt";
-        //    var rulesData = File.ReadAllLines(presetPath);
-        //    var rules = new List<IRule>();
-
-        //    foreach(var line in rulesData)
-        //    {
-        //        var rule = RuleFactory.Instance().Parse(line);
-
-        //        if(rule != null)
-        //        {
-        //            rules.Add(rule);
-        //        }
-        //    }
-
-        //    foreach (var rule in rules)
-        //    {
-        //        First = rule?.Rename(First)!;
-        //    }
-        //    foreach (var rule in rules)
-        //    {
-        //        Second = rule?.Rename(Second)!;
-        //    }
-        //    foreach (var rule in rules)
-        //    {
-        //        Third = rule?.Rename(Third)!;
-        //    }
-
-        //    this.DataContext = this;
-        //}
-
+            MessageBox.Show("Save preset successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

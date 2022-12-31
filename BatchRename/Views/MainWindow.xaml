@@ -23,6 +23,7 @@
                         Margin="4,0"
                         Padding="8,0"
                         Background="Transparent"
+                        Click="Save_Click"
                         BorderThickness="0"
                         Cursor="Hand">
                         <StackPanel>
