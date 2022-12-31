@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SaveWindowPosition;
 
 namespace BatchRename.Views
 {
@@ -30,9 +32,26 @@ namespace BatchRename.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var userPrefs = new UserPreferences();
 
+            this.Height = userPrefs.WindowHeight;
+            this.Width = userPrefs.WindowWidth;
+            this.Top = userPrefs.WindowTop;
+            this.Left = userPrefs.WindowLeft;
+            this.WindowState = userPrefs.WindowState;
         }
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            var userPrefs = new UserPreferences();
 
+            userPrefs.WindowHeight = this.Height;
+            userPrefs.WindowWidth = this.Width;
+            userPrefs.WindowTop = this.Top;
+            userPrefs.WindowLeft = this.Left;
+            userPrefs.WindowState = this.WindowState;
+
+            userPrefs.Save();
+        }
         private void addRuleButton_Click(object sender, RoutedEventArgs e)
         {
             if (AddCounterTabItem.IsSelected)
