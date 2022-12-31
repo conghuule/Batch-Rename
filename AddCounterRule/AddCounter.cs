@@ -29,7 +29,11 @@ namespace AddCounterRule
 
         public string Rename(string origin)
         {
-            string result = $"{origin} {CurrentValue.ToString("D3")}";
+            int lastIndex = origin.LastIndexOf('.');
+            var name = origin.Substring(0, lastIndex);
+            var ext = origin.Substring(lastIndex + 1);
+
+            string result = $"{name} {CurrentValue.ToString($"D{NumberOfDigit}")}.{ext}";
             CurrentValue += Step;
             return result;
         }

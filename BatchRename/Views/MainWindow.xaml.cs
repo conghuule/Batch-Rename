@@ -41,6 +41,7 @@ namespace BatchRename
         }
 
         private List<string> _fileAddedList;
+        List<string> pickedRuleList;
         ObservableCollection<PickedRule> pickedRules;
         ObservableCollection<PickedFile> pickedFiles;
 
@@ -52,6 +53,26 @@ namespace BatchRename
 
             pickedFiles = new ObservableCollection<PickedFile>();
             pickedFilesDataGrid.ItemsSource = pickedFiles;
+
+            var exeFolder = AppDomain.CurrentDomain.BaseDirectory;
+            var folderInfo = new DirectoryInfo(exeFolder);
+            var dllFiles = folderInfo.GetFiles("*.dll");
+
+            foreach (var file in dllFiles)
+            {
+                var assembly = Assembly.LoadFrom(file.FullName);
+                var types = assembly.GetTypes();
+
+                foreach (var type in types)
+                {
+                    if (type.IsClass && typeof(IRule).IsAssignableFrom(type))
+                    {
+                        IRule rule = (IRule)Activator.CreateInstance(type)!;
+                        RuleFactory.Register(rule);
+                    }
+                }
+            }
+            pickedRuleList = new List<string>();
         }
 
 
@@ -63,9 +84,28 @@ namespace BatchRename
             {
                 string newRule = screen.newRule;
                 RuleDetail detail = new RuleDetail() { Rule = newRule };
-                string ruleName = detail.GetName();
-                string ruleDescription = detail.GetDescription();
-                pickedRules.Add(new PickedRule { Name = ruleName, Description = ruleDescription });
+
+                bool isExistRule = false;
+                foreach (var pickedRule in pickedRuleList)
+                {
+                    string pickedRuleName = pickedRule.Split(" ", StringSplitOptions.None)[0];
+                    if (pickedRuleName == detail.GetName())
+                    {
+                        isExistRule = true;
+                    }
+                }
+
+                if (isExistRule)
+                {
+                    MessageBox.Show("Rule is exist", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                } else
+                {
+                    string ruleName = detail.GetName();
+                    string ruleDescription = detail.GetDescription();
+                    pickedRules.Add(new PickedRule { Name = ruleName, Description = ruleDescription });
+
+                    pickedRuleList.Add(newRule);
+                }
             }
             else
             {
@@ -80,6 +120,7 @@ namespace BatchRename
             {
                 int id = pickedRulesDataGrid.Items.IndexOf(selectedItems[0]);
                 pickedRules.RemoveAt(id);
+                pickedRuleList.RemoveAt(id);
             }
         }
 
@@ -218,17 +259,14 @@ namespace BatchRename
 
         private void renameFileList()
         {
-            RuleFactory.Register(new Trim());
-            RuleFactory.Register(new AddCounter());
-            RuleFactory.Register(new ChangeExtension());
-
-            RuleFactory factory = new RuleFactory();
             List<IRule> ruleList = new List<IRule>();
-            List<string> pickedRuleList = new List<string>() { "AddCounter 1 2 3", "Trim", "ChangeExtension txt md" };
             foreach (var pickedRule in pickedRuleList)
             {
-                IRule rule = factory.Parse(pickedRule);
-                ruleList.Add(rule);
+                IRule rule = RuleFactory.Instance().Parse(pickedRule);
+                if (rule != null)
+                {
+                    ruleList.Add(rule);
+                }
             }
             foreach (var file in pickedFiles)
             {
@@ -244,7 +282,6 @@ namespace BatchRename
         private void Preview_Click(object sender, RoutedEventArgs e)
         {
             renameFileList();
-
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
@@ -255,6 +292,8 @@ namespace BatchRename
             {
                 File.Move(file.Path, file.Path.Replace(file.Filename, file.Newname));
             }
+
+            MessageBox.Show("Rename filenames successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Handle_DropFile(object sender, DragEventArgs e)

@@ -24,7 +24,11 @@ namespace AddSuffixRule
 
         public string Rename(string origin)
         {
-            string newName = $"{origin} {Suffix}";
+            int lastIndex = origin.LastIndexOf('.');
+            var name = origin.Substring(0, lastIndex);
+            var ext = origin.Substring(lastIndex + 1);
+
+            string newName = $"{name} {Suffix}.{ext}";
             return newName;
         }
     }

@@ -39,8 +39,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AddCounterRule\AddCounterRule.csproj" />
+    <ProjectReference Include="..\AddPrefixRule\AddPrefixRule.csproj" />
+    <ProjectReference Include="..\AddSufixRule\AddSufixRule.csproj" />
     <ProjectReference Include="..\ChangeExtensionRule\ChangeExtensionRule.csproj" />
     <ProjectReference Include="..\Contract\Contract.csproj" />
+    <ProjectReference Include="..\LowerCaseNoSpaceRule\LowerCaseNoSpaceRule.csproj" />
+    <ProjectReference Include="..\PascalCaseRule\PascalCaseRule.csproj" />
+    <ProjectReference Include="..\ReplaceCharacter\ReplaceCharacter.csproj" />
     <ProjectReference Include="..\TrimRule\TrimRule.csproj" />
   </ItemGroup>
 
