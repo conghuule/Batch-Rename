@@ -16,9 +16,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TabControl">
                         <Grid>
-
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition Width="280" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
@@ -112,7 +111,7 @@
 
                         <TabItem
                             x:Name="AddCounterTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,0"
                             Background="#3b82f6"
                             FontSize="16"
@@ -198,7 +197,7 @@
 
                         <TabItem
                             x:Name="AddPrefixTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,0"
                             Background="#3b82f6"
                             FontSize="16"
@@ -211,7 +210,7 @@
                                 <Label
                                     Grid.Row="0"
                                     Margin="0,30,0,0"
-                                    Content="Add prefix"
+                                    Content="Add a prefix"
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="#4b5563" />
@@ -232,20 +231,20 @@
 
                         <TabItem
                             x:Name="AddSuffixTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,0"
                             Background="#3b82f6"
                             FontSize="16"
                             Header="Add suffix">
                             <Grid Margin="20,0,0,0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="1*" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="60" />
                                 </Grid.RowDefinitions>
                                 <Label
                                     Grid.Row="0"
                                     Margin="0,30,0,0"
-                                    Content="Add suffix"
+                                    Content="Add a suffix"
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="#4b5563" />
@@ -265,7 +264,7 @@
 
                         <TabItem
                             x:Name="ChangeExtensionTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,0"
                             Background="#3b82f6"
                             FontSize="16"
@@ -324,7 +323,7 @@
 
                         <TabItem
                             x:Name="ReplaceTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,0"
                             Background="#3b82f6"
                             FontSize="16"
@@ -368,7 +367,7 @@
 
                         <TabItem
                             x:Name="ToPascalCaseTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,0"
                             Background="#3b82f6"
                             FontSize="16"
@@ -378,29 +377,29 @@
                                 FontSize="16"
                                 FontWeight="Bold"
                                 Foreground="#4b5563">
-                                Rule to pascal case in file name
+                                Convert filename to PascalCase
                             </Label>
                         </TabItem>
 
                         <TabItem
                             x:Name="ToLowerCaseTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,1"
                             Background="#3b82f6"
                             FontSize="16"
-                            Header="To Lowercase">
+                            Header="To lowercase, remove all spaces">
                             <Label
                                 Margin="35,35,0,0"
                                 FontSize="16"
                                 FontWeight="Bold"
                                 Foreground="#4b5563">
-                                All character to lowercase in file name
+                                Convert all characters to lowercase, remove all spaces
                             </Label>
                         </TabItem>
 
                         <TabItem
                             x:Name="RemoveAllSpaceTabItem"
-                            Width="200"
+                            Width="260"
                             Margin="1,1,0,0"
                             Background="#3b82f6"
                             FontSize="16"
@@ -410,7 +409,7 @@
                                 FontSize="16"
                                 FontWeight="Bold"
                                 Foreground="#4b5563">
-                                Remove all space in file name
+                                Remove all space from the beginning and the ending of the filename
                             </Label>
                         </TabItem>
                     </TabControl>

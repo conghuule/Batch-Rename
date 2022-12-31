@@ -41,7 +41,7 @@ namespace BatchRename
         }
 
         private List<string> _fileAddedList;
-        List<string> pickedRuleList;
+        ObservableCollection<string> pickedRuleList;
         ObservableCollection<PickedRule> pickedRules;
         ObservableCollection<PickedFile> pickedFiles;
 
@@ -72,7 +72,7 @@ namespace BatchRename
                     }
                 }
             }
-            pickedRuleList = new List<string>();
+            pickedRuleList = new ObservableCollection<string>();
         }
 
 
@@ -133,8 +133,8 @@ namespace BatchRename
                 if (id != 0)
                 {
                     pickedRules.Move(id, id - 1);
+                    pickedRuleList.Move(id, id - 1);
                 }
-
             }
         }
 
@@ -147,8 +147,8 @@ namespace BatchRename
                 if (id != pickedRules.Count - 1)
                 {
                     pickedRules.Move(id, id + 1);
+                    pickedRuleList.Move(id, id + 1);
                 }
-
             }
         }
 
